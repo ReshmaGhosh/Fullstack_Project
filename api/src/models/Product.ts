@@ -11,7 +11,7 @@ export type ProductDocument = Document & {
 };
 
 
-const ProductSchema = new mongoose.Schema({
+export const ProductSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
