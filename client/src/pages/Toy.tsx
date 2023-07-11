@@ -31,10 +31,10 @@ function Toy() {
 
       {products.map((product) => (
         <div>
-          {" "}
+          
           <p>{product.title}</p>
           <p>{product.price}</p>
-          <p>{product.image}</p>{" "}
+          <img src={product.image} alt={product.title} />
         </div>
       ))}
     </div>
