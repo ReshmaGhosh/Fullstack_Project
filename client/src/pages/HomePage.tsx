@@ -1,6 +1,9 @@
 import React from "react";
 import LatestProducts from "../components/product/LatestProducts";
 import NavBar from "../components/header/Navbar";
+import FunnyKulius from "../components/product/FunnyKulius";
+
+
 
 function HomePage() {
   const publicUrl = process.env.PUBLIC_URL;
@@ -34,6 +37,17 @@ function HomePage() {
         }}
       />
       <LatestProducts />
+     
+      <img
+        src={`${publicUrl}/images/kulmedkulius.png`}
+        alt="Kulmedkulius"
+        style={{
+          width: "100%",
+          height: "auto",
+          objectFit: "contain",
+        }}
+      />
+     <FunnyKulius/>
     </div>
   );
 }

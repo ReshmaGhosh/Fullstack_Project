@@ -21,18 +21,18 @@ function LatestProducts() {
      <div
        style={{
          backgroundColor: "rgba(141,200,242,1)",
-         paddingTop: "80px",
+         paddingTop: "70px",
          marginTop: "-40px",
        }}
      >
        <h1
          style={{
            textAlign: "center",
-           fontSize: "2.8em",
+           fontSize: "2.5em",
            fontWeight: "bold",
          }}
        >
-         Letest Product
+         Latest Product
        </h1>
 
        <Grid style={{ margin: 0, padding: 0 }}>

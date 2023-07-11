@@ -40,18 +40,18 @@ function NavBar() {
           // }}
           >
             <img
-              src={process.env.PUBLIC_URL + "/images/logo3.png"}
+              src={process.env.PUBLIC_URL + "/images/logo9.png"}
               alt="Logo"
-              style={{ height: "170px", marginRight: "0px" }}
+              style={{ height: "130px", marginRight: "30px" }}
             />
           </div>
           <div
-          // style={{
-          //   display: "flex",
-          //   justifyContent: "center",
-          //   alignItems: "center",
-          //   flex: 2,
-          // }}
+        //   style={{
+        //     display: "flex",
+        //     justifyContent: "center",
+        //     alignItems: "center",
+        //     flex: 2,
+        //   }}
           >
             <Button
               color="inherit"
