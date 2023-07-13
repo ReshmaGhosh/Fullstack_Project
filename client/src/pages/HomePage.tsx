@@ -2,6 +2,7 @@ import React from "react";
 import LatestProducts from "../components/product/LatestProducts";
 import NavBar from "../components/header/Navbar";
 import FunnyKulius from "../components/product/FunnyKulius";
+import Footer from "../components/footer/Footer";
 
 
 
@@ -37,7 +38,7 @@ function HomePage() {
         }}
       />
       <LatestProducts />
-     
+
       <img
         src={`${publicUrl}/images/kulmedkulius.png`}
         alt="Kulmedkulius"
@@ -47,8 +48,79 @@ function HomePage() {
           objectFit: "contain",
         }}
       />
-     <FunnyKulius/>
+      <FunnyKulius />
+
+      <div
+        style={{
+          position: "relative",
+          width: "100%",
+          height: "auto",
+        }}
+      >
+        <img
+          src={`${publicUrl}/images/webb_start.png`}
+          alt="Kulmedkulius"
+          style={{
+            width: "100%",
+            height: "auto",
+            objectFit: "contain",
+            marginTop: "15px",
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: "40%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            color: "black",
+            fontSize: "1rem",
+            fontWeight: "bold",
+            textAlign: "center",
+          }}
+        >
+          <h1>Prices that make you want to play</h1>
+          <p>
+            Fauget is a chain of toys from the market's best brands, at really
+            low prices.{" "}
+          </p>
+          <p>
+            In our stores you will find everything from dolls and games to
+            stuffed animals and action figures.{" "}
+          </p>
+          <p>Welcome!</p>
+        </div>
+      </div>
+
+      <div
+        style={{
+          backgroundColor: "rgb(255,203,112)",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "10px",
+          padding: "1rem",
+        }}
+      >
+        <h1 style={{ color: "black", fontSize: "2.5em", textAlign: "center", paddingTop:"40px" }}>
+          Some of our best friends
+        </h1>
+
+        <img
+          src={`${publicUrl}/images/Leklust_logolimpa.png`}
+          alt="Kulmedkulius"
+          style={{
+            width: "50%",
+            height: "auto",
+            objectFit: "contain",
+               
+          }}
+        />
+      </div>
+      <Footer/>
     </div>
+
   );
 }
 

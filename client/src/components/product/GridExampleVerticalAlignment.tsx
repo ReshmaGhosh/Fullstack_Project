@@ -1,55 +1,88 @@
+
 import React from "react";
-import { Grid, Image, Card } from "semantic-ui-react";
-
-// const GridExampleVerticalAlignment = () => (
-//   <Grid verticalAlign="middle" columns={4} centered>
-//     <Grid.Row>
-//       <Grid.Column>
-//         <Image src="/images/Kulius.jpeg" />
-//       </Grid.Column>
-//       <Grid.Column>
-//         <Image src="/images/Kulius-polis.jpeg" />
-//         <br />
-//         <Image src="/images/Gor-eget-slime.jpeg" />
-//       </Grid.Column>
-//       <Grid.Column>
-//         <Image src="/images/Frostkalas.jpeg" />
-//       </Grid.Column>
-//     </Grid.Row>
-//   </Grid>
-// );
-
-// // export GridExampleVerticalAlignment
-// export default GridExampleVerticalAlignment;
+import { Card, Image } from "semantic-ui-react";
 
 const GridExampleVerticalAlignment = () => (
-  <Grid centered>
-    <Grid.Row>
-      <Grid.Column width={3}>
-        <Card>
+  <div
+    style={{
+      backgroundColor: "#8dc8f2",
+      paddingTop: "1rem",
+      marginTop: "10px"
+    }}
+  >
+    <h1
+      style={{
+        textAlign: "center",
+        paddingTop: "2rem",
+        fontSize: "2.3rem",
+        fontWeight: "bold",
+      }}
+    >
+      Fun With Kulius
+    </h1>
+
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "flex-start",
+        gap: "1rem",
+        paddingTop: "3rem",
+        paddingLeft: "2rem",
+        paddingRight: "2rem",
+       
+      }}
+    >
+      <div>
+        <Card
+          style={{
+            borderRadius: "25px",
+            boxShadow: "5px 5px 5px rgba(0, 0, 0, 0.15)",
+          }}
+        >
           <Image src="/images/Kulius.jpeg" />
         </Card>
-        <Card>
+        <Card
+          style={{
+            borderRadius: "25px",
+            boxShadow: "5px 5px 5px rgba(0, 0, 0, 0.15)",
+          }}
+        >
           <Image src="/images/Kulius-polis.jpeg" />
         </Card>
-      </Grid.Column>
+      </div>
 
-      <Grid.Column width={10}>
-        <Card>
-          <Image src="/images/Gor-eget-slime.jpeg" />
-        </Card>
-      </Grid.Column>
+      <Card
+        fluid
+        style={{
+          width: "50%",
+          borderRadius: "25px",
+          boxShadow: "5px 5px 5px rgba(0, 0, 0, 0.15)",
+        }}
+      >
+        <Image src="/images/Gor-eget-slime.jpeg" />
+      </Card>
 
-      <Grid.Column width={3}>
-        <Card>
+      <div>
+        <Card
+          style={{
+            borderRadius: "25px",
+            boxShadow: "5px 5px 5px rgba(0, 0, 0, 0.15)",
+          }}
+        >
           <Image src="/images/Frostkalas.jpeg" />
         </Card>
-        <Card>
+        <Card
+          style={{
+            borderRadius: "25px",
+            boxShadow: "5px 5px 5px rgba(0, 0, 0, 0.15)",
+          }}
+        >
           <Image src="/images/Biokalas.jpeg" />
         </Card>
-      </Grid.Column>
-    </Grid.Row>
-  </Grid>
+      </div>
+    </div>
+  </div>
 );
-export default GridExampleVerticalAlignment;
 
+export default GridExampleVerticalAlignment;
