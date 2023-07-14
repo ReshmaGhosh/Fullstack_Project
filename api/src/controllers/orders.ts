@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import orderServices from "../services/orders";
 import Order from "../models/Order";
 
-const createOrderController = async (
+export const createOrderController = async (
   req: Request,
   res: Response,
   next: NextFunction

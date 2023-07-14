@@ -1,12 +1,17 @@
+
 // server here
 import Express from "express";
 import cors from "cors";
 
 import productRouter from "./routes/products";
 import userRouter from "./routes/users";
+import orderRouter from "./routes/order";
 import apiErrorHandler from "./middlewares/apiErrorHandler";
 import { jwtStrategy } from "./config/passport";
 import passport from "passport";
+
+
+
 
 const app = Express();
 
@@ -18,6 +23,7 @@ passport.use(jwtStrategy);
 // routes
 app.use("/products", productRouter);
 app.use("/users", userRouter);
+app.use("/orders", orderRouter);
 
 // handler error here
 app.use(apiErrorHandler);

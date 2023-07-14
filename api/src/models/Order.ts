@@ -16,7 +16,7 @@ const OrderSchema = new mongoose.Schema({
     default: Date.now,
   },
   
-  productList: [ProductSchema],
+   productList: [ProductSchema],
   
   userId: {
     type: mongoose.Schema.Types.ObjectId,
