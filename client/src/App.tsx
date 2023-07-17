@@ -10,6 +10,8 @@ import Toy from "./pages/Toy";
 import Shop from "./pages/Shop";
 import FunWithKulius from "./pages/FunWithKulius";
 import About from "./pages/About";
+import SingleProductDetails from "./pages/products/productdetails/SingleProductDetails";
+import LoginPage from "./pages/LoginPage";
 
 
 function App() {
@@ -22,7 +24,8 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/funwithkulius" element={<FunWithKulius />} />
         <Route path="/about" element={<About />} />
-       
+        <Route path="/user" element={<LoginPage />} />
+        <Route path="/product/:id" element={<SingleProductDetails />} />
       </Routes>
     </div>
   );

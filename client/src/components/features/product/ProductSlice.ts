@@ -88,9 +88,10 @@
 
 // src/redux/slices/productSlice.ts
 
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import axios from "axios";
 import { Product } from "../../../types/type";
+import { RootState } from "../../../redux/store";
 
 export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
@@ -106,36 +107,69 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
+export const fetchProductById = createAsyncThunk(
+  "products/fetchProductById",
+  async (id: string) => {
+    try {
+      const response = await axios.get<Product>(
+        `http://localhost:8000/products/${id}`
+      );
+      return response.data;
+    } catch (err) {
+      throw err;
+    }
+  }
+);
+
 interface ProductsState {
-    products: Product[];
-    status: 'idle' | 'loading' | 'succeeded' | 'failed';
-    error: string | null;
+  products: Product[];
+  product: Product | null;
+  status: "idle" | "loading" | "succeeded" | "failed";
+  error: string | null;
 }
 
 const initialState: ProductsState = {
-    products: [],
-    status: 'idle',
-    error: null,
-}
+  products: [],
+  product: null,
+  status: "idle",
+  error: null,
+};
 
 export const productSlice = createSlice({
-    name: 'products',
-    initialState,
-    reducers: {},
-    extraReducers: (builder) => {
-        builder
-            .addCase(fetchProducts.pending, (state) => {
+  name: "products",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchProducts.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(
+        fetchProducts.fulfilled,
+        (state, action: PayloadAction<Product[]>) => {
+          state.status = "succeeded";
+          state.products = action.payload;
+        }
+      )
+      .addCase(fetchProducts.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message ?? null;
+      })
+      
+       .addCase(fetchProductById.pending, (state) => {
                 state.status = 'loading';
             })
-            .addCase(fetchProducts.fulfilled, (state, action: PayloadAction<Product[]>) => {
+            .addCase(fetchProductById.fulfilled, (state, action: PayloadAction<Product>) => {
                 state.status = 'succeeded';
-                state.products = action.payload;
+                state.product = action.payload;
             })
-            .addCase(fetchProducts.rejected, (state, action) => {
+            .addCase(fetchProductById.rejected, (state, action) => {
                 state.status = 'failed';
                 state.error = action.error.message ?? null;
             });
-    },
+  },
 });
+export const selectLatestProducts = (state: RootState) =>
+  state.products.products.slice(0, 6);
 
 export default productSlice.reducer;

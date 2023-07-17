@@ -1,11 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
+import { Card, CardContent, Typography, Box } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import Box from "@mui/material/Box";
 import { styled } from "@mui/system";
 
 import { Product } from "../../../types/type";

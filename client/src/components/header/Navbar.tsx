@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const StyledAppBar = styled(AppBar)({
   borderBottomLeftRadius: "70px",
@@ -80,12 +81,12 @@ function NavBar() {
               type="search"
               variant="filled"
               sx={{
-                ml: 40,
+                ml: 30,
                 width: "250px",
 
                 "& .MuiInputBase-root": {
-                  borderRadius: 7, 
-                  backgroundColor: "white", 
+                  borderRadius: 7,
+                  backgroundColor: "white",
                 },
                 "& .MuiFilledInput-underline:before": {
                   display: "none",
@@ -119,6 +120,17 @@ function NavBar() {
               </IconButton>
               Wishlist
             </Button>
+            <IconButton
+              color="inherit"
+              component={Link}
+              to="/user"
+              sx={{
+                ml: 2,
+                color: "white",
+              }}
+            >
+              <AccountCircleIcon style={{ fontSize: 50 }} />
+            </IconButton>
           </div>
         </Toolbar>
       </Container>
