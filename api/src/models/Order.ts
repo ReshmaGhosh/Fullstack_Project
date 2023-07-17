@@ -1,7 +1,6 @@
 import mongoose, { Document } from "mongoose";
 
-import { ProductDocument,ProductSchema } from "./Product";
-
+import { ProductDocument, ProductSchema } from "./Product";
 
 export type OrderDocument = Document & {
   createdAt: Date;
@@ -15,13 +14,13 @@ const OrderSchema = new mongoose.Schema({
     required: true,
     default: Date.now,
   },
-  
-   productList: [ProductSchema],
-  
+
+  productList: [ProductSchema],
+
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
 });
 
-export default mongoose.model<OrderDocument>("Order", OrderSchema);
+export default mongoose.model<OrderDocument>("order", OrderSchema);

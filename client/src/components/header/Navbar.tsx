@@ -21,38 +21,15 @@ function NavBar() {
   return (
     <StyledAppBar position="sticky" style={{ zIndex: 2 }}>
       <Container maxWidth="xl">
-        <Toolbar
-          disableGutters
-          //   style={{
-          //     display: "flex",
-          //     justifyContent: "center",
-          //     alignItems: "center",
-          //   }}
-        >
-          <div
-          // style={{
-          //   display: "flex",
-          //   justifyContent: "center",
-          //   alignItems: "center",
-          //   flex: 1,
-          //   position: "relative",
-          //   top: "-10px",
-          // }}
-          >
+        <Toolbar disableGutters>
+          <div>
             <img
               src={process.env.PUBLIC_URL + "/images/logo9.png"}
               alt="Logo"
               style={{ height: "130px", marginRight: "30px" }}
             />
           </div>
-          <div
-        //   style={{
-        //     display: "flex",
-        //     justifyContent: "center",
-        //     alignItems: "center",
-        //     flex: 2,
-        //   }}
-          >
+          <div>
             <Button
               color="inherit"
               component={Link}
@@ -92,18 +69,11 @@ function NavBar() {
               to="/about"
               sx={{ fontSize: "16px", color: "black", fontWeight: "bold" }}
             >
-             About
+              About
             </Button>
           </div>
 
-          <div
-          // style={{
-          //   display: "flex",
-          //   justifyContent: "center",
-          //   alignItems: "center",
-          //   flex: 1,
-          // }}
-          >
+          <div>
             <TextField
               id="filled-search"
               label="Hi, what are you looking for?"
@@ -112,11 +82,10 @@ function NavBar() {
               sx={{
                 ml: 40,
                 width: "250px",
-               
 
                 "& .MuiInputBase-root": {
-                  borderRadius: 7, // 4px border radius
-                  backgroundColor: "white", // required for filled variant
+                  borderRadius: 7, 
+                  backgroundColor: "white", 
                 },
                 "& .MuiFilledInput-underline:before": {
                   display: "none",

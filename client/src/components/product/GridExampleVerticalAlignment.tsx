@@ -7,7 +7,7 @@ const GridExampleVerticalAlignment = () => (
     style={{
       backgroundColor: "#8dc8f2",
       paddingTop: "1rem",
-      marginTop: "10px"
+      marginTop: "10px",
     }}
   >
     <h1
@@ -16,6 +16,7 @@ const GridExampleVerticalAlignment = () => (
         paddingTop: "2rem",
         fontSize: "2.3rem",
         fontWeight: "bold",
+        fontFamily: "Comic Sans MS, cursive, sans-serif",
       }}
     >
       Fun With Kulius
@@ -30,7 +31,6 @@ const GridExampleVerticalAlignment = () => (
         paddingTop: "3rem",
         paddingLeft: "2rem",
         paddingRight: "2rem",
-       
       }}
     >
       <div>

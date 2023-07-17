@@ -30,6 +30,7 @@ function LatestProducts() {
            textAlign: "center",
            fontSize: "2.5em",
            fontWeight: "bold",
+           fontFamily: "Comic Sans MS, cursive, sans-serif",
          }}
        >
          Latest Product

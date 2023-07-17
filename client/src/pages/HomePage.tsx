@@ -79,7 +79,9 @@ function HomePage() {
             textAlign: "center",
           }}
         >
-          <h1>Prices that make you want to play</h1>
+          <h1 style={{ fontFamily: "Comic Sans MS, cursive, sans-serif" }}>
+            Prices that make you want to play
+          </h1>
           <p>
             Fauget is a chain of toys from the market's best brands, at really
             low prices.{" "}
@@ -92,18 +94,16 @@ function HomePage() {
         </div>
       </div>
 
-      <div
-        style={{
-          backgroundColor: "rgb(255,203,112)",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "10px",
-          padding: "1rem",
-        }}
-      >
-        <h1 style={{ color: "black", fontSize: "2.5em", textAlign: "center", paddingTop:"40px" }}>
+      <div>
+        <h1
+          style={{
+            color: "black",
+            fontSize: "2.5em",
+            textAlign: "center",
+            paddingTop: "40px",
+            fontFamily: "Comic Sans MS, cursive, sans-serif",
+          }}
+        >
           Some of our best friends
         </h1>
 
@@ -114,13 +114,11 @@ function HomePage() {
             width: "50%",
             height: "auto",
             objectFit: "contain",
-               
           }}
         />
       </div>
-      <Footer/>
+      <Footer />
     </div>
-
   );
 }
 
