@@ -9,6 +9,8 @@ import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { useDispatch } from "react-redux";
+import { setSearchTerm } from "../features/product/ProductSlice";
 
 const StyledAppBar = styled(AppBar)({
   borderBottomLeftRadius: "70px",
@@ -19,6 +21,14 @@ const StyledAppBar = styled(AppBar)({
 });
 
 function NavBar() {
+
+      const dispatch = useDispatch();
+        const handleSearchChange = (
+          event: React.ChangeEvent<HTMLInputElement>
+        ) => {
+          dispatch(setSearchTerm(event.target.value));
+        };
+
   return (
     <StyledAppBar position="sticky" style={{ zIndex: 2 }}>
       <Container maxWidth="xl">
@@ -80,6 +90,7 @@ function NavBar() {
               label="Hi, what are you looking for?"
               type="search"
               variant="filled"
+              onChange={handleSearchChange}
               sx={{
                 ml: 30,
                 width: "250px",

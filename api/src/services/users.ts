@@ -8,7 +8,7 @@ const createUserService = async (user: UserDocument): Promise<UserDocument> => {
 const findUserByEmail = async (userEmail: string): Promise<UserDocument> => {
   const foundUser = await User.findOne({ email: userEmail });
   if (!foundUser) {
-    throw new NotFoundError(`Product ${userEmail} not found`);
+    throw new NotFoundError(`User ${userEmail} not found`);
   }
   return foundUser;
 };

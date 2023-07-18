@@ -11,6 +11,7 @@ import About from "./pages/About";
 import SingleProductDetails from "./pages/products/productdetails/SingleProductDetails";
 import LoginPage from "./pages/LoginPage";
 import LogInDetail from "./pages/LogInDetail";
+import WishList from "./components/features/favourite/WishList";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/user" element={<LoginPage />} />
         <Route path="/login-detail" element={<LogInDetail />} />
         <Route path="/product/:id" element={<SingleProductDetails />} />
+        <Route path="wishlist" element={<WishList />} />
       </Routes>
     </div>
   );

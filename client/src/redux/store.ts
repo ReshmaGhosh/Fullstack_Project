@@ -25,11 +25,13 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import productReducer from "../components/features/product/ProductSlice"
+import WishListSlice from "../components/features/favourite/WishListSlice";
 
 export const store = configureStore({
-    reducer: {
-        products: productReducer,
-    },
+  reducer: {
+    products: productReducer,
+    wishlist: WishListSlice,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

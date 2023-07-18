@@ -1,18 +1,52 @@
+
 import React from "react";
 import { useSelector } from "react-redux";
-import { Card, Image, Grid, Icon } from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import { CardContent, Typography, Box, Grid, Card } from "@mui/material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { styled } from "@mui/system";
+
 import { RootState } from "../../redux/store";
 import { selectLatestProducts } from "../features/product/ProductSlice";
 
-function getRandomLightColor() {
-  const red = Math.floor(Math.random() * 85) + 400;
-  const green = Math.floor(Math.random() * 65) + 200;
-  const blue = Math.floor(Math.random() * 95) + 200;
-  return `rgba(${red}, ${green}, ${blue}, 0.7)`;
-}
+const getRandomColor = () => {
+  let letters = "BCDEF9";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * letters.length)];
+  }
+  return color;
+};
 
 function LatestProducts() {
   const latestProducts = useSelector(selectLatestProducts);
+
+  const StyledTypographyTitle = styled(Typography)({
+    fontSize: "1.5rem",
+    fontFamily: "Comic Sans MS, cursive, sans-serif",
+  });
+
+  const StyledTypographyPrice = styled(Typography)({
+    fontSize: "1.2rem",
+    fontFamily: "Comic Sans MS, cursive, sans-serif",
+  });
+
+  const StyledFavoriteIcon = styled(FavoriteIcon)({
+    cursor: "pointer",
+    color: "white",
+    backgroundColor: "lightblue",
+    borderRadius: "50%",
+    padding: "5px", 
+    fontSize: "40px",
+    "&:hover": {
+      color: "red",
+    },
+  });
+
+  const StyledBox = styled(Box)({
+    height: "400px",
+    backgroundSize: "contain",
+  });
 
   return (
     <div
@@ -33,71 +67,46 @@ function LatestProducts() {
         Latest Products
       </h1>
 
-      <Grid style={{ margin: 0, padding: 0 }}>
-        <Grid.Row columns={3}>
-          {latestProducts.map((product) => (
-            <Grid.Column style={{ padding: "1em" }} key={product._id}>
-              <Card
-                centered
-                style={{
-                  width: "100%",
-                  borderRadius: "20px",
-                  minHeight: "400px",
-                  overflow: "hidden",
-                  background: `linear-gradient(${getRandomLightColor()}, transparent 70%)`,
-                }}
+      <Grid container spacing={2} style={{ padding: "20px" }}>
+        {latestProducts.map((product) => {
+          const firstImage = product.image || "";
+          const color = getRandomColor();
+
+          const StyledCard = styled(Card)({
+            backgroundColor: color,
+            borderRadius: "20px",
+          });
+
+          return (
+            <Grid item xs={12} sm={6} md={4} key={product._id}>
+              <Link
+                to={`/product/${product._id}`}
+                style={{ textDecoration: "none" }}
               >
-                <Image
-                  src={product.image}
-                  wrapped
-                  ui={false}
-                  style={{ borderRadius: "20px 20px 0 0" }}
-                />
-                <Card.Content
-                  style={{
-                    backgroundColor: "white",
-                    padding: "2em",
-                    borderRadius: "0 0 20px 20px",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <div
+                <StyledCard>
+                  <StyledBox
                     style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
+                      backgroundImage: `url(${firstImage})`,
+                      backgroundRepeat: "no-repeat",
+                      backgroundPosition: "center",
                     }}
-                  >
-                    <Card.Header style={{ textAlign: "left" }}>
+                  />
+                  <CardContent style={{ backgroundColor: "white" }}>
+                    <StyledTypographyTitle variant="subtitle1">
                       {product.title}
-                    </Card.Header>
-                  </div>
-                  <div
-                    style={{
-                      width: "40px",
-                      height: "40px",
-                      borderRadius: "50%",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      backgroundColor: "#547df0",
-                      marginLeft: "auto",
-                      padding: "6px",
-                    }}
-                  >
-                    <Icon
-                      name="heart"
-                      size="large"
-                      style={{ color: "white", margin: "0" }}
-                    />
-                  </div>
-                </Card.Content>
-              </Card>
-            </Grid.Column>
-          ))}
-        </Grid.Row>
+                    </StyledTypographyTitle>
+
+                    <StyledTypographyPrice variant="body1" color="text.primary">
+                      SEK {product.price}
+                    </StyledTypographyPrice>
+
+                    <StyledFavoriteIcon />
+                  </CardContent>
+                </StyledCard>
+              </Link>
+            </Grid>
+          );
+        })}
       </Grid>
     </div>
   );

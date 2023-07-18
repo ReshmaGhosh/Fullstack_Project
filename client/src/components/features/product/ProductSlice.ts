@@ -126,6 +126,7 @@ interface ProductsState {
   product: Product | null;
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
+  searchTerm: string;
 }
 
 const initialState: ProductsState = {
@@ -133,12 +134,17 @@ const initialState: ProductsState = {
   product: null,
   status: "idle",
   error: null,
+  searchTerm: "",
 };
 
 export const productSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    setSearchTerm: (state, action: PayloadAction<string>) => {
+      state.searchTerm = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
@@ -155,21 +161,24 @@ export const productSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message ?? null;
       })
-      
-       .addCase(fetchProductById.pending, (state) => {
-                state.status = 'loading';
-            })
-            .addCase(fetchProductById.fulfilled, (state, action: PayloadAction<Product>) => {
-                state.status = 'succeeded';
-                state.product = action.payload;
-            })
-            .addCase(fetchProductById.rejected, (state, action) => {
-                state.status = 'failed';
-                state.error = action.error.message ?? null;
-            });
+
+      .addCase(fetchProductById.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(
+        fetchProductById.fulfilled,
+        (state, action: PayloadAction<Product>) => {
+          state.status = "succeeded";
+          state.product = action.payload;
+        }
+      )
+      .addCase(fetchProductById.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message ?? null;
+      });
   },
 });
 export const selectLatestProducts = (state: RootState) =>
   state.products.products.slice(0, 6);
-
+export const { setSearchTerm } = productSlice.actions; 
 export default productSlice.reducer;

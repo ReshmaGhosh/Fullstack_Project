@@ -18,48 +18,63 @@ const getRandomColor = () => {
 
 interface ProductCardProps {
   product: Product;
+  handleToggleWishlist?: (product: Product) => void;
+  isItemInWishlist?: (productId: string) => boolean;
 }
 
-//   handleToggleWishlist: (product: Product) => void;
-//   isItemInWishlist: (productId: string) => boolean;
+function ProductCard({
+  product,
+  handleToggleWishlist,
+  isItemInWishlist,
+}: ProductCardProps) {
 
-function ProductCard({ product }: ProductCardProps) {
+    
   const color = getRandomColor();
   const StyledCard = styled(Card)({
     backgroundColor: color,
     borderRadius: "20px",
   });
 
+  const StyledTypographyTitle = styled(Typography)({
+    fontSize: "1.5rem",
+    fontFamily: "Comic Sans MS, cursive, sans-serif",
+  });
 
-const StyledTypographyTitle = styled(Typography)({
-  fontSize: "1.5rem",
-  fontFamily: "Comic Sans MS, cursive, sans-serif",
-});
+  const StyledTypographyPrice = styled(Typography)({
+    fontSize: "1.2rem",
+    fontFamily: "Comic Sans MS, cursive, sans-serif",
+  });
 
-const StyledTypographyPrice = styled(Typography)({
-  fontSize: "1.2rem",
-  fontFamily: "Comic Sans MS, cursive, sans-serif",
-});
+  const StyledFavoriteIcon = styled(FavoriteIcon)({
+    cursor: "pointer",
+    color: "white",
+    backgroundColor: "lightblue",
+    borderRadius: "50%",
+    padding: "5px",
+    fontSize: "40px",
+    "&:hover": {
+      color: "red",
+    },
+  });
 
-const StyledFavoriteIcon = styled(FavoriteIcon)({
-  cursor: "pointer",
-  "&:hover": {
-    color: "red",
-  },
-});
-
-const StyledBox = styled(Box)({
-  height: "400px",
-  backgroundSize: "contain",
-});
-
+  const StyledBox = styled(Box)({
+    height: "400px",
+    backgroundSize: "contain",
+  });
 
   const firstImage = product.image || "";
 
-  //   const handleHeartClick = (event: React.MouseEvent) => {
-  //     event.preventDefault();
-  //     handleToggleWishlist(product);
-  //   };
+    const handleHeartClick = (event: React.MouseEvent) => {
+      event.preventDefault();
+
+      if (handleToggleWishlist) {
+        handleToggleWishlist(product);
+      }
+    };
+  const isWishlistItem = isItemInWishlist
+    ? isItemInWishlist(product._id)
+    : false;
+
 
   return (
     <div>
@@ -73,8 +88,9 @@ const StyledBox = styled(Box)({
             }}
           />
 
-          <CardContent>
-            <StyledTypographyTitle variant="subtitle1" >
+          <CardContent style={{ backgroundColor: "white" }}>
+            <div style={{ height: "50px" }} />
+            <StyledTypographyTitle variant="subtitle1">
               {product.title}
             </StyledTypographyTitle>
 
@@ -91,8 +107,11 @@ const StyledBox = styled(Box)({
                 }}
               ></Box>
             </div>
+            <StyledFavoriteIcon
+              onClick={handleHeartClick}
+              style={{ color: isWishlistItem ? "red" : "white" }}
+            />
           </CardContent>
-          <StyledFavoriteIcon />
         </StyledCard>
       </Link>
     </div>

@@ -2,15 +2,13 @@
 // server here
 import Express from "express";
 import cors from "cors";
+import passport from "passport";
 
 import productRouter from "./routes/products";
 import userRouter from "./routes/users";
 import orderRouter from "./routes/order";
 import apiErrorHandler from "./middlewares/apiErrorHandler";
 import { jwtStrategy } from "./config/passport";
-import passport from "passport";
-
-
 
 
 const app = Express();
