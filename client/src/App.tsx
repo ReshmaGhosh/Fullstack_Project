@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import "./App.css";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "./redux/store";
 
 import HomePage from "./pages/HomePage";
 import Toy from "./pages/Toy";
@@ -12,10 +10,11 @@ import FunWithKulius from "./pages/FunWithKulius";
 import About from "./pages/About";
 import SingleProductDetails from "./pages/products/productdetails/SingleProductDetails";
 import LoginPage from "./pages/LoginPage";
+import LogInDetail from "./pages/LogInDetail";
 
 
 function App() {
-    const products = useSelector((state: RootState) => state.products.products);
+    //const products = useSelector((state: RootState) => state.products.products);
   return (
     <div className="App">
       <Routes>
@@ -25,6 +24,7 @@ function App() {
         <Route path="/funwithkulius" element={<FunWithKulius />} />
         <Route path="/about" element={<About />} />
         <Route path="/user" element={<LoginPage />} />
+        <Route path="/login-detail" element={<LogInDetail />} />
         <Route path="/product/:id" element={<SingleProductDetails />} />
       </Routes>
     </div>

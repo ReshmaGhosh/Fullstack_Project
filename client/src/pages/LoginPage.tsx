@@ -1,15 +1,16 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
-
-import { Breadcrumb } from "semantic-ui-react";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import NavBar from "../components/header/Navbar";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  Breadcrumbs,
+  Link,
+} from "@mui/material";
 import { styled } from "@mui/system";
 import ToysIcon from "@mui/icons-material/Toys";
-
-const sections = [
-  { key: "home", content: "Home", link: true },
-  { key: "login", content: "Login", active: true },
-];
 
 const StyledBox = styled(Box)({
   background: "linear-gradient(to right, #FFA500, #FFEC8B)",
@@ -20,6 +21,8 @@ const StyledBox = styled(Box)({
 function LoginPage() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const navigate = useNavigate();
 
   function handleUsernameChange(event: ChangeEvent<HTMLInputElement>) {
     setUsername(event.target.value);
@@ -33,19 +36,29 @@ function LoginPage() {
     event.preventDefault();
     console.log("Username:", username);
     console.log("Password:", password);
+
+    navigate("/home");
+    navigate("/login-detail");
   }
 
   return (
     <div>
       <NavBar />
-      <Breadcrumb sections={sections} />
+      <Breadcrumbs aria-label="breadcrumb">
+        <Link color="inherit" component={RouterLink} to="/">
+          Home
+        </Link>
+
+        <Link color="inherit" component={RouterLink} to="/login-detail">
+          Login
+        </Link>
+      </Breadcrumbs>
       <StyledBox
         component="form"
         sx={{
           display: "flex",
           flexDirection: "column",
           width: "50%",
-          minWidth: "300px",
           height: "50%",
           margin: "auto",
           padding: "2rem",
@@ -64,22 +77,20 @@ function LoginPage() {
         </Typography>
         <TextField
           required
-          fullWidth
           label="Username"
           variant="outlined"
           value={username}
           onChange={handleUsernameChange}
-          sx={{ marginBottom: "1rem" }}
+          sx={{ marginBottom: "1rem", width: "100%" }}
         />
         <TextField
           required
-          fullWidth
           label="Password"
           variant="outlined"
           type="password"
           value={password}
           onChange={handlePasswordChange}
-          sx={{ marginBottom: "1rem" }}
+          sx={{ marginBottom: "1rem", width: "100%" }}
         />
         <Button variant="contained" type="submit">
           Submit
