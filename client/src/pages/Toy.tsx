@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProducts } from "../components/features/product/ProductSlice";
@@ -7,15 +6,32 @@ import { Product } from "../types/type";
 import ProductCard from "../components/product/card/ProductCard";
 import Grid from "@mui/material/Grid";
 import NavBar from "../components/header/Navbar";
+import {
+  addItemToWishlist,
+  removeItemFromWishlist,
+} from "../components/features/favourite/WishListSlice";
 
 function Toy() {
   const dispatch = useDispatch<AppDispatch>();
   const products = useSelector((state: RootState) => state.products.products);
   const status = useSelector((state: RootState) => state.products.status);
   const error = useSelector((state: RootState) => state.products.error);
+  const wishlistItems = useSelector((state: RootState) => state.wishlist.items);
   const searchTerm = useSelector(
     (state: RootState) => state.products.searchTerm
   );
+
+  const isItemInWishlist = (productId: string) => {
+    return wishlistItems.some((item) => item._id === productId);
+  };
+
+  const handleToggleWishlist = (product: Product) => {
+    if (isItemInWishlist(product._id)) {
+      dispatch(removeItemFromWishlist(product._id));
+    } else {
+      dispatch(addItemToWishlist(product));
+    }
+  };
 
   const filteredProducts = products.filter((product) =>
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -54,7 +70,11 @@ function Toy() {
           {(searchTerm ? filteredProducts : products).map(
             (product: Product) => (
               <Grid item xs={4} key={product._id}>
-                <ProductCard product={product} />
+                <ProductCard
+                  product={product}
+                  handleToggleWishlist={handleToggleWishlist}
+                  isItemInWishlist={isItemInWishlist}
+                />
               </Grid>
             )
           )}

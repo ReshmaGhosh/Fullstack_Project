@@ -43,19 +43,19 @@ function WishList() {
       <Navbar />
       <br />
 
-      <Box sx={{ p: 3 }}>
-        <h4 className="mb-4"> Your Wishlist</h4>
-        <Grid container spacing={2}>
+      <Box sx={{ p: 5 }}>
+        <h1 className="mb-4"> Your Wishlist</h1>
+        <Grid container spacing={4}>
           {wishlistItems.map((product) => (
             <Grid item xs={12} sm={6} md={4} lg={2} key={product._id}>
-              <ProductCard
-                key={product._id}
-                product={product}
-                // handleToggleWishlist={() => handleToggleWishlist(product)}
-                // isItemInWishlist={isItemInWishlist}
-                handleToggleWishlist={handleToggleWishlist}
-                isItemInWishlist={isItemInWishlist}
-              />
+              <Box pb={9}>
+                <ProductCard
+                  key={product._id}
+                  product={product}
+                  handleToggleWishlist={() => handleToggleWishlist(product)}
+                  isItemInWishlist={isItemInWishlist}
+                />
+              </Box>
             </Grid>
           ))}
         </Grid>

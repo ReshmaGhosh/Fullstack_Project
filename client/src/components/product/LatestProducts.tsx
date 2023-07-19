@@ -22,12 +22,12 @@ function LatestProducts() {
   const latestProducts = useSelector(selectLatestProducts);
 
   const StyledTypographyTitle = styled(Typography)({
-    fontSize: "1.5rem",
+    fontSize: "1.2rem",
     fontFamily: "Comic Sans MS, cursive, sans-serif",
   });
 
   const StyledTypographyPrice = styled(Typography)({
-    fontSize: "1.2rem",
+    fontSize: "1rem",
     fontFamily: "Comic Sans MS, cursive, sans-serif",
   });
 
@@ -36,7 +36,7 @@ function LatestProducts() {
     color: "white",
     backgroundColor: "lightblue",
     borderRadius: "50%",
-    padding: "5px", 
+    padding: "5px",
     fontSize: "40px",
     "&:hover": {
       color: "red",
@@ -91,7 +91,7 @@ function LatestProducts() {
                       backgroundPosition: "center",
                     }}
                   />
-                  <CardContent style={{ backgroundColor: "white" }}>
+                  <CardContent style={{ backgroundColor: "transparent" }}>
                     <StyledTypographyTitle variant="subtitle1">
                       {product.title}
                     </StyledTypographyTitle>
@@ -113,3 +113,4 @@ function LatestProducts() {
 }
 
 export default LatestProducts;
+

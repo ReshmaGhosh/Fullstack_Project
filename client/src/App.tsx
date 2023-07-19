@@ -12,6 +12,7 @@ import SingleProductDetails from "./pages/products/productdetails/SingleProductD
 import LoginPage from "./pages/LoginPage";
 import LogInDetail from "./pages/LogInDetail";
 import WishList from "./components/features/favourite/WishList";
+import Cart from "./pages/Cart";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path="/login-detail" element={<LogInDetail />} />
         <Route path="/product/:id" element={<SingleProductDetails />} />
         <Route path="wishlist" element={<WishList />} />
+        <Route path="cart" element={<Cart />} />
       </Routes>
     </div>
   );

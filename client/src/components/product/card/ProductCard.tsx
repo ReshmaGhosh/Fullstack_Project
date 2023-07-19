@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -6,6 +7,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { styled } from "@mui/system";
 
 import { Product } from "../../../types/type";
+
 
 const getRandomColor = () => {
   let letters = "BCDEF9";
@@ -22,26 +24,30 @@ interface ProductCardProps {
   isItemInWishlist?: (productId: string) => boolean;
 }
 
+const StyledCard = styled(Card)({
+  borderRadius: "20px",
+});
+
+const StyledBox = styled(Box)({
+  height: "400px",
+  backgroundSize: "contain",
+  backgroundBlendMode: "overlay",
+});
+
 function ProductCard({
   product,
   handleToggleWishlist,
   isItemInWishlist,
 }: ProductCardProps) {
-
-    
   const color = getRandomColor();
-  const StyledCard = styled(Card)({
-    backgroundColor: color,
-    borderRadius: "20px",
-  });
 
   const StyledTypographyTitle = styled(Typography)({
-    fontSize: "1.5rem",
+    fontSize: "1.2rem",
     fontFamily: "Comic Sans MS, cursive, sans-serif",
   });
 
   const StyledTypographyPrice = styled(Typography)({
-    fontSize: "1.2rem",
+    fontSize: "1rem",
     fontFamily: "Comic Sans MS, cursive, sans-serif",
   });
 
@@ -57,29 +63,23 @@ function ProductCard({
     },
   });
 
-  const StyledBox = styled(Box)({
-    height: "400px",
-    backgroundSize: "contain",
-  });
-
   const firstImage = product.image || "";
 
-    const handleHeartClick = (event: React.MouseEvent) => {
-      event.preventDefault();
+  const handleHeartClick = (event: React.MouseEvent) => {
+    event.preventDefault();
 
-      if (handleToggleWishlist) {
-        handleToggleWishlist(product);
-      }
-    };
+    if (handleToggleWishlist) {
+      handleToggleWishlist(product);
+    }
+  };
   const isWishlistItem = isItemInWishlist
     ? isItemInWishlist(product._id)
     : false;
 
-
   return (
     <div>
       <Link to={`/product/${product._id}`} style={{ textDecoration: "none" }}>
-        <StyledCard>
+        <StyledCard style={{ backgroundColor: color }}>
           <StyledBox
             style={{
               backgroundImage: `url(${firstImage})`,
@@ -88,10 +88,10 @@ function ProductCard({
             }}
           />
 
-          <CardContent style={{ backgroundColor: "white" }}>
+          <CardContent style={{ backgroundColor: "transparent" }}>
             <div style={{ height: "50px" }} />
             <StyledTypographyTitle variant="subtitle1">
-              {product.title}
+              {product.title && product.title.slice(0, 25)}
             </StyledTypographyTitle>
 
             <StyledTypographyPrice variant="body1" color="text.primary">
