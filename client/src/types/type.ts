@@ -9,3 +9,11 @@ export interface Product {
   description: string;
   category?: string;
 }
+
+export type User = {
+  _id: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+};

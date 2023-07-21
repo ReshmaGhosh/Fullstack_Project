@@ -12,6 +12,9 @@ import {
 } from "@mui/material";
 import ToysIcon from "@mui/icons-material/Toys";
 import { styled } from "@mui/system";
+import { actions } from "../components/features/user/UserSlice";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ColorfulButton = styled(Button)({
   background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
@@ -33,35 +36,54 @@ const StyledForm = styled(Box)({
 });
 
 function LogInDetail() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [address, setAddress] = useState("");
-  const [age, setAge] = useState("");
-  const [gender, setGender] = useState("");
+  const [userInfo, setUserInfo] = useState({
+    firstName: "",
+    lastName: "",
+    address: "",
+    email: "",
+    password: "",
+  });
 
-  const handleFirstNameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setFirstName(event.target.value);
-  };
+  function setUserFirstName(event: React.ChangeEvent<HTMLInputElement>) {
+    setUserInfo({ ...userInfo, firstName: event.target.value });
+  }
+  function setUserLastName(event: React.ChangeEvent<HTMLInputElement>) {
+    setUserInfo({ ...userInfo, lastName: event.target.value });
+  }
+  function setUserAddress(event: React.ChangeEvent<HTMLInputElement>) {
+    setUserInfo({ ...userInfo, address: event.target.value });
+  }
+  function setUserEmail(event: React.ChangeEvent<HTMLInputElement>) {
+    setUserInfo({ ...userInfo, email: event.target.value });
+  }
 
-  const handleLastNameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setLastName(event.target.value);
-  };
+  function setUserPassword(event: React.ChangeEvent<HTMLInputElement>) {
+    setUserInfo({ ...userInfo, password: event.target.value });
+  }
 
-  const handleAgeChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setAge(event.target.value);
-  };
+  const navigate = useNavigate();
 
-  const handleGenderChange = (event: SelectChangeEvent<string>) => {
-    setGender(event.target.value as string);
-  };
+  function onClickHandler() {
+    const url = "http://localhost:8000/users/register";
 
-  const handleAddressChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setAddress(event.target.value);
-  };
-
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-  };
+    axios
+      .post(url, userInfo)
+      .then((response) => {
+        if (response.status === 201) {
+          //navigate(`/toy`);
+          navigate("/");
+        }
+        console.log(response.data);
+      })
+      .catch((error) => console.log(error));
+    setUserInfo({
+      firstName: "",
+      lastName: "",
+      address: "",
+      email: "",
+      password: "",
+    });
+  }
 
   return (
     <div>
@@ -70,54 +92,47 @@ function LogInDetail() {
         &nbsp; Fill Your Details!
       </Typography>
 
-      <StyledForm component="form" onSubmit={handleSubmit}>
-        <TextField
-          required
-          label="First Name"
-          value={firstName}
-          onChange={handleFirstNameChange}
-          style={{ fontSize: "1.2em", margin: "10px 0" }}
-        />
-        <TextField
-          required
-          label="Last Name"
-          value={lastName}
-          onChange={handleLastNameChange}
-          style={{ fontSize: "1.2em", margin: "10px 0" }}
-        />
+      {/* <StyledForm component="form"> */}
+      <TextField
+        required
+        label="First Name"
+        value={userInfo.firstName}
+        onChange={setUserFirstName}
+        style={{ fontSize: "1.2em", margin: "10px 0" }}
+      />
+      <TextField
+        required
+        label="Last Name"
+        value={userInfo.lastName}
+        onChange={setUserLastName}
+        style={{ fontSize: "1.2em", margin: "10px 0" }}
+      />
 
-        <TextField
-          required
-          label="Age"
-          value={age}
-          onChange={handleAgeChange}
-          style={{ fontSize: "1.2em", margin: "10px 0" }}
-        />
-        <FormControl
-          sx={{ fontSize: "1.2em", margin: "10px 0", width: "13%" }}
-        >
-          <InputLabel id="gender-select-label">Gender</InputLabel>
-          <Select
-            labelId="gender-select-label"
-            id="gender-select"
-            value={gender}
-            label="Gender"
-            onChange={handleGenderChange}
-          >
-            <MenuItem value={"male"}>Male</MenuItem>
-            <MenuItem value={"female"}>Female</MenuItem>
-            <MenuItem value={"other"}>Other</MenuItem>
-          </Select>
-        </FormControl>
-        <TextField
-          required
-          label="Address"
-          value={address}
-          onChange={handleAddressChange}
-          style={{ fontSize: "1.2em", margin: "10px 0" }}
-        />
-        <ColorfulButton type="submit">Submit</ColorfulButton>
-      </StyledForm>
+      <TextField
+        required
+        label="Address"
+        value={userInfo.address}
+        onChange={setUserAddress}
+        style={{ fontSize: "1.2em", margin: "10px 0" }}
+      />
+      <TextField
+        required
+        label="Email address"
+        value={userInfo.email}
+        onChange={setUserEmail}
+        style={{ fontSize: "1.2em", margin: "10px 0" }}
+      />
+      <TextField
+        required
+        label="Password"
+        value={userInfo.password}
+        onChange={setUserPassword}
+        style={{ fontSize: "1.2em", margin: "10px 0" }}
+      />
+      <button onClick={onClickHandler}>
+        Submit
+      </button>
+      {/* </StyledForm> */}
     </div>
   );
 }
