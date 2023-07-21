@@ -18,7 +18,7 @@ export const subTotalPrice = createSelector(cartsItem, (items) => {
   let total = 0;
   if (items) {
     items.forEach((item) => {
-      total += Number(item.price) * item.quantity; // parse string to number
+      total += Number(item.price) * item.quantity; 
     });
   }
   return total.toFixed(2);

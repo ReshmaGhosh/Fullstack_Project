@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProducts } from "../components/features/product/ProductSlice";
 import { RootState, AppDispatch } from "../redux/store";
@@ -10,8 +10,21 @@ import {
   addItemToWishlist,
   removeItemFromWishlist,
 } from "../components/features/favourite/WishListSlice";
+// import Button from "@mui/material/Button";
+
+// const categories = [
+//   "Activity",
+//   "Bath",
+//   "Lego",
+//   "Doll",
+//   "Animal",
+//   "Robot",
+//   "Car",
+//   "Craft",
+// ];
 
 function Toy() {
+  //const [selectedCategory, setSelectedCategory] = useState("");
   const dispatch = useDispatch<AppDispatch>();
   const products = useSelector((state: RootState) => state.products.products);
   const status = useSelector((state: RootState) => state.products.status);
@@ -33,9 +46,16 @@ function Toy() {
     }
   };
 
-  const filteredProducts = products.filter((product) =>
-    product.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+
+    const filteredProducts = products.filter((product) =>
+      product.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+//   const filteredProducts = products.filter(
+//     (product) =>
+//       product.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
+//       (selectedCategory === "" || inferCategory(product) === selectedCategory)
+//   );
 
   useEffect(() => {
     if (status === "idle") {
@@ -65,6 +85,18 @@ function Toy() {
         >
           Our Products
         </h1>
+
+        {/* <div>
+          {categories.map((category) => (
+            <Button
+              variant="contained"
+              color={selectedCategory === category ? "primary" : "secondary"}
+              onClick={() => setSelectedCategory(category)}
+            >
+              {category}
+            </Button>
+          ))}
+        </div> */}
 
         <Grid container spacing={3}>
           {(searchTerm ? filteredProducts : products).map(

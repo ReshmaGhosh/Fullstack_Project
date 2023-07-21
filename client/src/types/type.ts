@@ -1,5 +1,4 @@
 export interface Product {
- 
   _id: string;
   title: string;
   price: string;
@@ -8,4 +7,5 @@ export interface Product {
   image3: string;
   image4: string;
   description: string;
+  category?: string;
 }

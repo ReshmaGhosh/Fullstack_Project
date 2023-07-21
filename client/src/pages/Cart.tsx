@@ -32,14 +32,14 @@ function Cart() {
       <Navbar />
       <br />
       <br />
-      <br />
+
       <Container>
         <Grid container spacing={2}>
           {!carts.length && (
             <Grid item xs={12} className="my-5 text-center text-danger">
               <Typography variant="h4">
                 You don't have any product in carts.{" "}
-                <Link to="/products" className="text-dark text-decoration-none">
+                <Link to="/toy" className="text-dark text-decoration-none">
                   {" "}
                   Go for shopping{" "}
                 </Link>
@@ -48,7 +48,7 @@ function Cart() {
           )}
           {carts.length > 0 &&
             carts.map((c) => (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={c.id}>
+              <Grid item xs={12} key={c.id}>
                 <CartItemCard item={c} />
               </Grid>
             ))}
@@ -56,7 +56,16 @@ function Cart() {
 
         {carts.length > 0 && (
           <div className="my-3">
-            <Card>
+            <Card
+              sx={{
+                my: 2,
+                width: "80rem",
+                boxShadow: 3,
+                border: "1px solid grey",
+                backgroundColor: "#fafafa",
+                p: 2,
+              }}
+            >
               <CardContent>
                 <Grid
                   container
@@ -87,7 +96,9 @@ function Cart() {
           </div>
         )}
       </Container>
-      <Footer />
+      <div style={{ marginTop: "200px" }}>
+        <Footer />
+      </div>
     </div>
   );
 }

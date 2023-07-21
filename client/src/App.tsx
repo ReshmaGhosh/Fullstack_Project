@@ -13,6 +13,9 @@ import LoginPage from "./pages/LoginPage";
 import LogInDetail from "./pages/LogInDetail";
 import WishList from "./components/features/favourite/WishList";
 import Cart from "./pages/Cart";
+import ColorIt from "./pages/ColorIt";
+import PartyTips from "./pages/PartyTips";
+import Playing from "./pages/Playing";
 
 
 function App() {
@@ -28,8 +31,11 @@ function App() {
         <Route path="/user" element={<LoginPage />} />
         <Route path="/login-detail" element={<LogInDetail />} />
         <Route path="/product/:id" element={<SingleProductDetails />} />
-        <Route path="wishlist" element={<WishList />} />
-        <Route path="cart" element={<Cart />} />
+        <Route path="/wishlist" element={<WishList />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/colorit" element={<ColorIt />} />
+        <Route path="/partytips" element={<PartyTips />} />
+        <Route path="/playing" element={<Playing />} />
       </Routes>
     </div>
   );

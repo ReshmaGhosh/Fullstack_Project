@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Button,
@@ -60,7 +61,16 @@ function CartItemCard({ item }: CartItemCardProps) {
 
   if (product) {
     return (
-      <Card sx={{ my: 2 }}>
+      <Card
+        sx={{
+          my: 2,
+          width: "80rem",
+          boxShadow: 3,
+          border: "1px solid grey",
+          backgroundColor: "#fafafa",
+          p: 2,
+        }}
+      >
         <CardContent>
           <Box
             display="flex"
@@ -73,7 +83,7 @@ function CartItemCard({ item }: CartItemCardProps) {
               to={`/product/${product.id}`}
               style={{ textDecoration: "none", color: "#000" }}
             >
-              {product.title ? product.title.slice(0, 20) : ""}...
+              {product.title ? product.title : ""}...
             </Typography>
             <Box display="flex" justifyContent="center" alignItems="center">
               <IconButton onClick={decreaseItemQuantiity} size="small">
