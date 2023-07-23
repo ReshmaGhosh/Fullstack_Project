@@ -1,6 +1,6 @@
 import React from "react";
 import { RootState } from "../redux/store";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CartItemCard from "../components/cart/CartItemCard";
 import Footer from "../components/footer/Footer";
@@ -19,14 +19,51 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import { Box } from "@mui/material";
+import axios from "axios";
 
 function Cart() {
+  const dispatch = useDispatch();
+  const userDetail = useSelector(
+    (state: RootState) => state.users.userInformation
+  );
   const state = useSelector((state: RootState) => state);
   const carts = useSelector(cartState);
   const subTotal = subTotalPrice(state);
   const tax = totalTax(state);
   const totalAmmount = totalPrice(state);
 
+  function onClickHandler() {
+    // send data to backend
+    const token = localStorage.getItem("userToken");
+    const url = `http://localhost:8000/orders/${userDetail?._id}`;
+
+    axios
+      .post(
+        url,
+        { productList: carts },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res, "new data");
+        if (res && res.status === 200) {
+          // Clear the cart if the request is successful
+          dispatch(clearCart());
+          alert("Thanks for shopping with us");
+        }
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 401) {
+          // alert user
+          alert("Please log in to make an order");
+          return;
+        }
+      });
+  }
   return (
     <div>
       <Navbar />
@@ -48,7 +85,7 @@ function Cart() {
           )}
           {carts.length > 0 &&
             carts.map((c) => (
-              <Grid item xs={12} key={c.id}>
+              <Grid item xs={12} key={c._id}>
                 <CartItemCard item={c} />
               </Grid>
             ))}
@@ -85,7 +122,11 @@ function Cart() {
                   </Grid>
                   <Grid item xs={6} sm={3}>
                     <Box display="flex" justifyContent="center">
-                      <Button variant="contained" color="primary">
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={onClickHandler}
+                      >
                         Checkout
                       </Button>
                     </Box>
@@ -104,3 +145,6 @@ function Cart() {
 }
 
 export default Cart;
+function clearCart(): any {
+  throw new Error("Function not implemented.");
+}

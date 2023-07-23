@@ -118,5 +118,4 @@ function LoginPage() {
 }
 
 export default LoginPage;
-//   navigate("/home");
-//   navigate("/login-detail");
+

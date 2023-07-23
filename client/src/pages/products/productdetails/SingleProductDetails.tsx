@@ -15,7 +15,7 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 import NavBar from "../../../components/header/Navbar";
 import { fetchProductById } from "../../../components/features/product/ProductSlice";
 import { addToCarts } from "../../../components/features/cart/CartSlice";
-import { Product } from "../../../types/type";
+import { Product, ProductOrder } from "../../../types/type";
 import RightCartIcon from "../../../components/cart/RightCartIcon";
 
 function SingleProductDetails() {
@@ -39,10 +39,12 @@ function SingleProductDetails() {
 
   const addToCart = () => {
     if (product) {
-      const item = {
-        id: product._id,
+      const item: ProductOrder = {
+        ...product,
+
+        // _id: product._id,
         quantity: quantity,
-        price: product.price,
+        // price: product.price,
       };
       dispatch(addToCarts(item));
     }

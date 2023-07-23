@@ -16,14 +16,14 @@ import { useEffect } from "react";
 import {
   increaseQuantity,
   decreaseQuantity,
-  removeFormCart,
+  removeFromCart,
   selectIsLoading,
   selectProduct,
   fetchProduct,
 } from "../features/cart/CartSlice";
 
 interface CartItem {
-  id: string;
+  _id: string;
   quantity: number;
 }
 
@@ -38,22 +38,22 @@ function CartItemCard({ item }: CartItemCardProps) {
 
   const increaseItemQuantity = (e: React.MouseEvent) => {
     e.preventDefault();
-    dispatch(increaseQuantity({ id: item.id }));
+    dispatch(increaseQuantity({ id: item._id }));
   };
 
   const decreaseItemQuantiity = (e: React.MouseEvent) => {
     e.preventDefault();
-    dispatch(decreaseQuantity({ id: item.id }));
+    dispatch(decreaseQuantity({ id: item._id }));
   };
 
   const removeItem = (e: React.MouseEvent) => {
     e.preventDefault();
-    dispatch(removeFormCart({ id: item.id }));
+    dispatch(removeFromCart({ id: item._id }));
   };
 
   useEffect(() => {
-    dispatch(fetchProduct(item.id));
-  }, [dispatch, item.id]);
+    dispatch(fetchProduct(item._id));
+  }, [dispatch, item._id]);
 
   if (isLoading) {
     return <Typography>Loading...</Typography>;
@@ -80,7 +80,7 @@ function CartItemCard({ item }: CartItemCardProps) {
             <Typography
               variant="h6"
               component={Link}
-              to={`/product/${product.id}`}
+              to={`/product/${product._id}`}
               style={{ textDecoration: "none", color: "#000" }}
             >
               {product.title ? product.title : ""}...

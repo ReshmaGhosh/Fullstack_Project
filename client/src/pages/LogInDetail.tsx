@@ -69,9 +69,8 @@ function LogInDetail() {
     axios
       .post(url, userInfo)
       .then((response) => {
-        if (response.status === 201) {
-          //navigate(`/toy`);
-          navigate("/");
+        if (response.status === 200) {
+          navigate(`/toy`);
         }
         console.log(response.data);
       })
@@ -129,9 +128,7 @@ function LogInDetail() {
         onChange={setUserPassword}
         style={{ fontSize: "1.2em", margin: "10px 0" }}
       />
-      <button onClick={onClickHandler}>
-        Submit
-      </button>
+      <button onClick={onClickHandler}>Submit</button>
       {/* </StyledForm> */}
     </div>
   );

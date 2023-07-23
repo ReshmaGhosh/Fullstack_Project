@@ -7,6 +7,7 @@ import ColorItSlice from "../components/features/colorit/ColorItSlice";
 import PartyTipsSlice from "../components/features/partyTips/PartyTipsSlice";
 import PlayingSlice from "../components/features/playing/PlayingSlice";
 import UserSlice from "../components/features/user/UserSlice";
+import orderReducer from "./slice/order";
 
 export const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const store = configureStore({
     partyTips: PartyTipsSlice,
     playing: PlayingSlice,
     users: UserSlice,
+    order: orderReducer,
   },
 });
 
