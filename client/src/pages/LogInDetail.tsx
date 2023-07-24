@@ -70,7 +70,8 @@ function LogInDetail() {
       .post(url, userInfo)
       .then((response) => {
         if (response.status === 200) {
-          navigate(`/toy`);
+          // navigate("/login");
+          navigate("/user");
         }
         console.log(response.data);
       })
@@ -91,45 +92,45 @@ function LogInDetail() {
         &nbsp; Fill Your Details!
       </Typography>
 
-      {/* <StyledForm component="form"> */}
-      <TextField
-        required
-        label="First Name"
-        value={userInfo.firstName}
-        onChange={setUserFirstName}
-        style={{ fontSize: "1.2em", margin: "10px 0" }}
-      />
-      <TextField
-        required
-        label="Last Name"
-        value={userInfo.lastName}
-        onChange={setUserLastName}
-        style={{ fontSize: "1.2em", margin: "10px 0" }}
-      />
+      <StyledForm component="form">
+        <TextField
+          required
+          label="First Name"
+          value={userInfo.firstName}
+          onChange={setUserFirstName}
+          style={{ fontSize: "1.2em", margin: "10px 0" }}
+        />
+        <TextField
+          required
+          label="Last Name"
+          value={userInfo.lastName}
+          onChange={setUserLastName}
+          style={{ fontSize: "1.2em", margin: "10px 0" }}
+        />
 
-      <TextField
-        required
-        label="Address"
-        value={userInfo.address}
-        onChange={setUserAddress}
-        style={{ fontSize: "1.2em", margin: "10px 0" }}
-      />
-      <TextField
-        required
-        label="Email address"
-        value={userInfo.email}
-        onChange={setUserEmail}
-        style={{ fontSize: "1.2em", margin: "10px 0" }}
-      />
-      <TextField
-        required
-        label="Password"
-        value={userInfo.password}
-        onChange={setUserPassword}
-        style={{ fontSize: "1.2em", margin: "10px 0" }}
-      />
-      <button onClick={onClickHandler}>Submit</button>
-      {/* </StyledForm> */}
+        <TextField
+          required
+          label="Address"
+          value={userInfo.address}
+          onChange={setUserAddress}
+          style={{ fontSize: "1.2em", margin: "10px 0" }}
+        />
+        <TextField
+          required
+          label="Email address"
+          value={userInfo.email}
+          onChange={setUserEmail}
+          style={{ fontSize: "1.2em", margin: "10px 0" }}
+        />
+        <TextField
+          required
+          label="Password"
+          value={userInfo.password}
+          onChange={setUserPassword}
+          style={{ fontSize: "1.2em", margin: "10px 0" }}
+        />
+        <ColorfulButton onClick={onClickHandler}>Submit</ColorfulButton>
+      </StyledForm>
     </div>
   );
 }

@@ -9,8 +9,13 @@ import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { useDispatch } from "react-redux";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import RightCartIcon from "../cart/RightCartIcon";
+
+import { useDispatch, useSelector } from "react-redux";
 import { setSearchTerm } from "../features/product/ProductSlice";
+import { totalCartItem } from "../features/cart/CartSelector";
+import { RootState } from "../../redux/store";
 
 const StyledAppBar = styled(AppBar)({
   borderBottomLeftRadius: "70px",
@@ -21,13 +26,12 @@ const StyledAppBar = styled(AppBar)({
 });
 
 function NavBar() {
-
-      const dispatch = useDispatch();
-        const handleSearchChange = (
-          event: React.ChangeEvent<HTMLInputElement>
-        ) => {
-          dispatch(setSearchTerm(event.target.value));
-        };
+  const state = useSelector((state: RootState) => state);
+  const totalItems = totalCartItem(state);
+  const dispatch = useDispatch();
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearchTerm(event.target.value));
+  };
 
   return (
     <StyledAppBar position="sticky" style={{ zIndex: 2 }}>
@@ -92,7 +96,7 @@ function NavBar() {
               variant="filled"
               onChange={handleSearchChange}
               sx={{
-                ml: 30,
+                ml: 27,
                 width: "250px",
 
                 "& .MuiInputBase-root": {
@@ -112,7 +116,7 @@ function NavBar() {
               component={Link}
               to="/wishlist"
               sx={{
-                ml: 6,
+                ml: 2,
                 fontSize: "18px",
                 color: "white",
                 fontWeight: "bold",
@@ -140,7 +144,20 @@ function NavBar() {
                 color: "white",
               }}
             >
-              <AccountCircleIcon style={{ fontSize: 50 }} />
+              <AccountCircleIcon style={{ fontSize: 40 }} />
+            </IconButton>
+            <IconButton
+              color="inherit"
+              component={Link}
+              to="/cart"
+              sx={{
+                ml: 1,
+                color: "white",
+              }}
+            >
+              <ShoppingCartIcon style={{ fontSize: 40 }} />
+              <span>{totalItems}</span>
+              {/* <RightCartIcon /> */}
             </IconButton>
           </div>
         </Toolbar>

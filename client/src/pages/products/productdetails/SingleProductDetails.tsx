@@ -16,7 +16,6 @@ import NavBar from "../../../components/header/Navbar";
 import { fetchProductById } from "../../../components/features/product/ProductSlice";
 import { addToCarts } from "../../../components/features/cart/CartSlice";
 import { Product, ProductOrder } from "../../../types/type";
-import RightCartIcon from "../../../components/cart/RightCartIcon";
 
 function SingleProductDetails() {
   const dispatch = useDispatch<AppDispatch>();
@@ -59,14 +58,11 @@ function SingleProductDetails() {
   if (status === "loading") {
     return <div>Loading...</div>;
   } else if (status === "succeeded" && product) {
-
     return (
       <div>
         <NavBar />
         <Grid container spacing={2}>
-          <Grid item xs={12} className="text-end">
-            <RightCartIcon />
-          </Grid>
+          <Grid item xs={12} className="text-end"></Grid>
 
           <Grid item xs={12} sm={6}>
             <Box>
@@ -123,4 +119,3 @@ function SingleProductDetails() {
 }
 
 export default SingleProductDetails;
-

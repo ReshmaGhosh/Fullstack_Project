@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -20,6 +20,7 @@ import {
   selectIsLoading,
   selectProduct,
   fetchProduct,
+
 } from "../features/cart/CartSlice";
 
 interface CartItem {
@@ -32,23 +33,24 @@ interface CartItemCardProps {
 }
 
 function CartItemCard({ item }: CartItemCardProps) {
-  const product = useSelector((state: RootState) => selectProduct(state));
+   const product = useSelector((state: RootState) => selectProduct(state));
+  //  const [product, setProduct] = useState<Product | null>(null);
   const isLoading = useSelector((state: RootState) => selectIsLoading(state));
   const dispatch = useDispatch<AppDispatch>();
 
   const increaseItemQuantity = (e: React.MouseEvent) => {
     e.preventDefault();
-    dispatch(increaseQuantity({ id: item._id }));
+    dispatch(increaseQuantity({ _id: item._id }));
   };
 
   const decreaseItemQuantiity = (e: React.MouseEvent) => {
     e.preventDefault();
-    dispatch(decreaseQuantity({ id: item._id }));
+    dispatch(decreaseQuantity({ _id: item._id }));
   };
 
   const removeItem = (e: React.MouseEvent) => {
     e.preventDefault();
-    dispatch(removeFromCart({ id: item._id }));
+    dispatch(removeFromCart({ _id: item._id }));
   };
 
   useEffect(() => {

@@ -7,7 +7,7 @@ export interface Product {
   image3: string;
   image4: string;
   description: string;
-  category?: string;
+
 }
 
 export type User = {
