@@ -12,21 +12,33 @@ export default function OrderList() {
     (state: RootState) => state.users.userInformation
   );
   const dispatch = useDispatch<AppDispatch>();
+
   useEffect(() => {
     if (userDetail) {
       dispatch(fetchOrderData(userDetail._id));
     }
-  }, []);
+  }, [dispatch, userDetail]);
   console.log(orderList, "order");
   return (
     <div>
       <h1>OrderList </h1>
-      {orderList.map((item) => (
+      {/* {orderList.map((item) => (
         <div>
           <div> {new Date(item.createdAt).toLocaleDateString()}</div>
           <div>
             {item.productList.map((product) => (
               <ProductOrderList product={product} />
+            ))}
+          </div>
+        </div>
+      ))} */}
+
+      {orderList.map((item) => (
+        <div key={item._id}>
+          <div>{new Date(item.createdAt).toLocaleDateString()}</div>
+          <div>
+            {item.productList.map((product) => (
+              <ProductOrderList key={product._id} product={product} /> 
             ))}
           </div>
         </div>

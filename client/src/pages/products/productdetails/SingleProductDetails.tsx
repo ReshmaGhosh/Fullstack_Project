@@ -20,12 +20,13 @@ import { Product, ProductOrder } from "../../../types/type";
 function SingleProductDetails() {
   const dispatch = useDispatch<AppDispatch>();
   const { id } = useParams<Record<string, string | undefined>>();
+  // console.log(id, "id")
   const product = useSelector((state: RootState) => state.products.product);
   const status = useSelector((state: RootState) => state.products.status);
   const error = useSelector((state: RootState) => state.products.error);
 
   const [quantity, setQuantity] = useState(0);
-
+console.log(id, "id");
   const increaseQuantity = () => {
     setQuantity(quantity + 1);
   };

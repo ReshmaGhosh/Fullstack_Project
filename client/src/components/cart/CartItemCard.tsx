@@ -22,14 +22,15 @@ import {
   fetchProduct,
 
 } from "../features/cart/CartSlice";
+import { ProductOrder } from "../../types/type";
 
-interface CartItem {
-  _id: string;
-  quantity: number;
-}
+// interface CartItem {
+//   _id: string;
+//   quantity: number;
+// }
 
 interface CartItemCardProps {
-  item: CartItem;
+  item: ProductOrder;
 }
 
 function CartItemCard({ item }: CartItemCardProps) {
@@ -61,7 +62,7 @@ function CartItemCard({ item }: CartItemCardProps) {
     return <Typography>Loading...</Typography>;
   }
 
-  if (product) {
+  
     return (
       <Card
         sx={{
@@ -82,10 +83,10 @@ function CartItemCard({ item }: CartItemCardProps) {
             <Typography
               variant="h6"
               component={Link}
-              to={`/product/${product._id}`}
+              to={`/product/${item._id}`}
               style={{ textDecoration: "none", color: "#000" }}
             >
-              {product.title ? product.title : ""}...
+              {item.title }...
             </Typography>
             <Box display="flex" justifyContent="center" alignItems="center">
               <IconButton onClick={decreaseItemQuantiity} size="small">
@@ -97,8 +98,8 @@ function CartItemCard({ item }: CartItemCardProps) {
               </IconButton>
             </Box>
             <Typography variant="h6" align="center">
-              {product.price
-                ? (Number(product.price) * item.quantity).toFixed(2)
+              {item.price
+                ? (Number(item.price) * item.quantity).toFixed(2)
                 : ""}
             </Typography>
             <Button variant="contained" color="error" onClick={removeItem}>
@@ -108,9 +109,9 @@ function CartItemCard({ item }: CartItemCardProps) {
         </CardContent>
       </Card>
     );
-  }
+  
 
-  return null;
+ 
 }
 
 export default CartItemCard;

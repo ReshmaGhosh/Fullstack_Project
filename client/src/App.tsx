@@ -16,10 +16,11 @@ import Cart from "./pages/Cart";
 import ColorIt from "./pages/ColorIt";
 import PartyTips from "./pages/PartyTips";
 import Playing from "./pages/Playing";
-
+import OrderList from "./components/orders/OrderList";
+import OrderDetail from "./components/orders/OrderDetail";
 
 function App() {
-    //const products = useSelector((state: RootState) => state.products.products);
+  //const products = useSelector((state: RootState) => state.products.products);
   return (
     <div className="App">
       <Routes>
@@ -36,6 +37,7 @@ function App() {
         <Route path="/colorit" element={<ColorIt />} />
         <Route path="/partytips" element={<PartyTips />} />
         <Route path="/playing" element={<Playing />} />
+        <Route path="/order/:id" element={<OrderDetail />} />
       </Routes>
     </div>
   );

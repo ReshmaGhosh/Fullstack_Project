@@ -5,34 +5,43 @@ import { Link } from "react-router-dom";
 import CartItemCard from "../components/cart/CartItemCard";
 import Footer from "../components/footer/Footer";
 import Navbar from "../components/header/Navbar";
+import { useNavigate } from "react-router-dom";
+
 import {
   subTotalPrice,
   totalPrice,
   totalTax,
 } from "../components/features/cart/CartSelector";
-import { cartState } from "../components/features/cart/CartSlice";
+import { clearCart } from "../components/features/cart/CartSlice";
 
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import { Box } from "@mui/material";
 import axios from "axios";
 
 function Cart() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const userDetail = useSelector(
     (state: RootState) => state.users.userInformation
   );
   const state = useSelector((state: RootState) => state);
-  const carts = useSelector(cartState);
+  const carts = useSelector((state: RootState) => state.carts.carts);
+
   const subTotal = subTotalPrice(state);
   const tax = totalTax(state);
   const totalAmmount = totalPrice(state);
 
   function onClickHandler() {
+    if (!userDetail) {
+      alert("Please login to continue");
+      navigate("/login-detail");
+      return;
+    }
+
     // send data to backend
     const token = localStorage.getItem("userToken");
     const url = `http://localhost:8000/orders/${userDetail?._id}`;
@@ -49,17 +58,25 @@ function Cart() {
         }
       )
       .then((res) => {
+        console.log("Response:", res);
+        console.log("Order id:", res.data._id);
         console.log(res, "new data");
         if (res && res.status === 200) {
-          // Clear the cart if the request is successful
+          
           dispatch(clearCart());
+
+          console.log(`/order/${res.data._id}`);
+          navigate(`/order/${res.data._id}`);
+
           alert("Thanks for shopping with us");
         }
       })
       .catch((error) => {
         if (error.response && error.response.status === 401) {
-          // alert user
+         
           alert("Please log in to make an order");
+          navigate("/login");
+
           return;
         }
       });
@@ -91,51 +108,32 @@ function Cart() {
             ))}
         </Grid>
 
-        {carts.length > 0 && (
-          <div className="my-3">
-            <Card
-              sx={{
-                my: 2,
-                width: "80rem",
-                boxShadow: 3,
-                border: "1px solid grey",
-                backgroundColor: "#fafafa",
-                p: 2,
-              }}
-            >
-              <CardContent>
-                <Grid
-                  container
-                  justifyContent="space-between"
-                  alignItems="center"
+        <CardContent>
+          <Grid container justifyContent="space-between" alignItems="center">
+            <Grid item xs={6} sm={3}>
+              <Typography variant="h6">Subtotal: ${subTotal}</Typography>
+            </Grid>
+            <Grid item xs={6} sm={3}>
+              <Typography variant="h6">Tax(2%): ${tax}</Typography>
+            </Grid>
+            <Grid item xs={6} sm={3}>
+              <Typography variant="h6">
+                Total Price: ${totalAmmount.toFixed(2)}
+              </Typography>
+            </Grid>
+            <Grid item xs={6} sm={3}>
+              <Box display="flex" justifyContent="center">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={onClickHandler}
                 >
-                  <Grid item xs={6} sm={3}>
-                    <Typography variant="h6">Subtotal: ${subTotal}</Typography>
-                  </Grid>
-                  <Grid item xs={6} sm={3}>
-                    <Typography variant="h6">Tax(2%): ${tax}</Typography>
-                  </Grid>
-                  <Grid item xs={6} sm={3}>
-                    <Typography variant="h6">
-                      Total Price: ${totalAmmount.toFixed(2)}
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={6} sm={3}>
-                    <Box display="flex" justifyContent="center">
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={onClickHandler}
-                      >
-                        Checkout
-                      </Button>
-                    </Box>
-                  </Grid>
-                </Grid>
-              </CardContent>
-            </Card>
-          </div>
-        )}
+                  Checkout
+                </Button>
+              </Box>
+            </Grid>
+          </Grid>
+        </CardContent>
       </Container>
       <div style={{ marginTop: "200px" }}>
         <Footer />
@@ -145,6 +143,3 @@ function Cart() {
 }
 
 export default Cart;
-function clearCart(): any {
-  throw new Error("Function not implemented.");
-}

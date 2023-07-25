@@ -1,3 +1,4 @@
+
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -19,15 +20,6 @@ export default function OutlinedCard({
   phoneNumber: string;
   openingHours: string[][];
 }) {
-  const bull = (
-    <Box
-      component="span"
-      sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-    >
-      •
-    </Box>
-  );
-
   const card = (
     <React.Fragment>
       <CardContent>
@@ -44,6 +36,7 @@ export default function OutlinedCard({
           sx={{
             color: "black",
             marginTop: "30px",
+            marginBottom: "14px",
             textAlign: "left",
             fontWeight: "bold",
           }}
@@ -52,45 +45,104 @@ export default function OutlinedCard({
         </Typography>
 
         {(addressLines || []).map((line, index) => (
-          <Typography
-            key={index}
-            variant="body2"
-            color="text.primary"
-            sx={{
-              marginTop: index === 0 ? "10px" : "5px",
-              fontSize: 18,
-              textAlign: "left",
-            }}
-          >
-            {index === 0 ? "Address: " + line : line}
-          </Typography>
+          <div key={index}>
+            <Typography
+              variant="body2"
+              color="text.primary"
+              sx={{
+                marginTop: index === 0 ? "10px" : "5px",
+                fontSize: 18,
+                textAlign: "left",
+                fontWeight: "bold",
+              }}
+            >
+              {index === 0 ? "Address: " : ""}
+            </Typography>
+            <Typography
+              variant="body2"
+              color="text.primary"
+              sx={{
+                marginTop: index === 0 ? "10px" : "5px",
+                fontSize: 18,
+                textAlign: "left",
+              }}
+            >
+              {line}
+            </Typography>
+          </div>
         ))}
         <Typography
           variant="body2"
           color="text.primary"
-          sx={{ marginTop: "10px", fontSize: 18, textAlign: "left" }}
+          sx={{
+            marginTop: "10px",
+            fontSize: 18,
+            textAlign: "left",
+            fontWeight: "bold",
+          }}
         >
-          {"Telephone: " + phoneNumber}
+          {"Telephone: "}
+        </Typography>
+        <Typography
+          variant="body2"
+          color="text.primary"
+          sx={{
+            marginTop: "10px",
+            fontSize: 18,
+            textAlign: "left",
+          }}
+        >
+          {phoneNumber}
         </Typography>
 
         {(openingHours || []).map((line, index) => (
-          <Typography
-            key={index}
-            variant="body2"
-            color="text.primary"
-            sx={{
-              marginTop: index === 0 ? "10px" : "5px",
-              fontSize: 18,
-              textAlign: "left",
-            }}
-          >
-            {index === 0 ? "Opening hours: " + line : line}
-          </Typography>
+          <div key={index}>
+            <Typography
+              variant="body2"
+              color="text.primary"
+              sx={{
+                marginTop: index === 0 ? "10px" : "5px",
+                fontSize: 18,
+                textAlign: "left",
+                fontWeight: "bold",
+              }}
+            >
+              {index === 0 ? "Opening hours: " : ""}
+            </Typography>
+            <Typography
+              variant="body2"
+              color="text.primary"
+              sx={{
+                marginTop: index === 0 ? "10px" : "5px",
+                fontSize: 18,
+                textAlign: "left",
+              }}
+            >
+              {line}
+            </Typography>
+          </div>
         ))}
       </CardContent>
-      <br />
+
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button
+          size="small"
+          variant="contained"
+          color="primary"
+          sx={{
+            borderRadius: "25px",
+            padding: "10px 20px",
+            fontSize: "15px",
+          }}
+          onClick={() => {
+            window.open(
+              `https://www.google.com/maps/search/?api=1&query=${city}`
+            );
+          }}
+        >
+         
+          Learn More
+        </Button>
       </CardActions>
     </React.Fragment>
   );
