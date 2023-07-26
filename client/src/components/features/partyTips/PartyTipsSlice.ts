@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
-interface PartyTipsData {
+export interface PartyTipsData {
   _id: string;
   title: string;
   description: string;
@@ -26,6 +26,14 @@ export const fetchPartyTips = createAsyncThunk("partyTips/fetchPartyTips", async
   return response.data;
 });
 
+export const fetchPartyTipsById = createAsyncThunk(
+  "partyTips/fetchPartyTipsById",
+  async (id: string) => {
+    const response = await axios.get(`http://localhost:8000/partytips/${id}`);
+    return response.data;
+  }
+);
+
 const partyTipsSlice = createSlice({
   name: "partyTips",
   initialState,
@@ -43,6 +51,21 @@ const partyTipsSlice = createSlice({
         }
       )
       .addCase(fetchPartyTips.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+
+      .addCase(fetchPartyTipsById.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(
+        fetchPartyTipsById.fulfilled,
+        (state, action: PayloadAction<PartyTipsData>) => {
+          state.status = "succeeded";
+          state.partyTips = [action.payload];
+        }
+      )
+      .addCase(fetchPartyTipsById.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });

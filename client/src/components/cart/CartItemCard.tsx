@@ -35,7 +35,7 @@ interface CartItemCardProps {
 
 function CartItemCard({ item }: CartItemCardProps) {
    const product = useSelector((state: RootState) => selectProduct(state));
-  //  const [product, setProduct] = useState<Product | null>(null);
+
   const isLoading = useSelector((state: RootState) => selectIsLoading(state));
   const dispatch = useDispatch<AppDispatch>();
 

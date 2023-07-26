@@ -1,28 +1,4 @@
-// import React from "react";
-// import ProductOrderList from "./ProductOrderList";
-// import { Order } from "../../types/type";
 
-// interface OrderDetailProps {
-//   order: Order;
-// }
-
-// function OrderDetail(props: OrderDetailProps) {
-//   const { order } = props;
-
-//   return (
-//     <div>
-//       <div>{new Date(order.createdAt).toLocaleDateString()}</div>
-//       <div>
-//         <h2>Products</h2>
-//         {order.productList.map((product) => (
-//           <ProductOrderList key={product._id} product={product} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default OrderDetail;
 
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";

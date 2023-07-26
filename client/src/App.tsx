@@ -18,9 +18,12 @@ import PartyTips from "./pages/PartyTips";
 import Playing from "./pages/Playing";
 import OrderList from "./components/orders/OrderList";
 import OrderDetail from "./components/orders/OrderDetail";
+import ColorItDetail from "./components/features/colorit/ColorItDetail";
+import PartyTipsDetail from "./components/features/partyTips/PartyTipsDetail";
+import PlayingDetail from "./components/features/playing/PlayingDetail";
 
 function App() {
-  //const products = useSelector((state: RootState) => state.products.products);
+
   return (
     <div className="App">
       <Routes>
@@ -38,6 +41,9 @@ function App() {
         <Route path="/partytips" element={<PartyTips />} />
         <Route path="/playing" element={<Playing />} />
         <Route path="/order/:id" element={<OrderDetail />} />
+        <Route path="/colorit/:id" element={<ColorItDetail />} />
+        <Route path="/partytips/:id" element={<PartyTipsDetail />} />
+        <Route path="/playing/:id" element={<PlayingDetail />} />
       </Routes>
     </div>
   );

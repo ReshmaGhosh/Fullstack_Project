@@ -10,7 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import RightCartIcon from "../cart/RightCartIcon";
+
 
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchTerm } from "../features/product/ProductSlice";
@@ -157,7 +157,7 @@ function NavBar() {
             >
               <ShoppingCartIcon style={{ fontSize: 40 }} />
               <span>{totalItems}</span>
-              {/* <RightCartIcon /> */}
+            
             </IconButton>
           </div>
         </Toolbar>

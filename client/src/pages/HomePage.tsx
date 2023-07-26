@@ -4,8 +4,6 @@ import NavBar from "../components/header/Navbar";
 import FunnyKulius from "../components/product/FunnyKulius";
 import Footer from "../components/footer/Footer";
 
-
-
 function HomePage() {
   const publicUrl = process.env.PUBLIC_URL;
   console.log(publicUrl);
@@ -13,30 +11,63 @@ function HomePage() {
     <div>
       <NavBar />
 
-      <img
-        src={`${publicUrl}/images/katalog.png`}
-        alt="Catalog"
-        width="815"
-        height="500"
-        style={{
-          position: "relative",
-          top: "-55px",
-          zIndex: 1,
-          marginRight: "10px",
-        }}
-      />
-      <img
-        src={`${publicUrl}/images/butik.png`}
-        alt="Shop"
-        width="600"
-        height="500"
-        style={{
-          position: "relative",
-          top: "-55px",
-          zIndex: 1,
-          marginLeft: "10px",
-        }}
-      />
+      <div style={{ display: "flex", marginTop: "-60px" }}>
+        <div style={{ position: "relative", width: "815px", height: "500px" }}>
+          <img
+            src={`${publicUrl}/images/katalog.png`}
+            alt="Catalog"
+            style={{
+              width: "100%",
+              height: "89%",
+            }}
+          />
+          <a href="/toy" style={{ textDecoration: "none" }}>
+            <h1
+              style={{
+                position: "absolute",
+                top: "10%",
+                left: "30%",
+                transform: "translate(-50%, -50%)",
+                color: "white",
+                fontSize: "35px",
+                paddingTop: "90px"
+              }}
+            >
+              Toy
+            </h1>
+          </a>
+          <p
+            style={{
+              position: "absolute",
+              top: "35%",
+              left: "35%",
+              transform: "translate(-50%, -50%)",
+              color: "white",
+              fontSize: "22px",
+               paddingTop: "30px"
+            }}
+          >
+            Adventure awaits in every toy! Check out our exciting collection
+            coming soon. Amazing deals and thrilling offers are waiting for you
+            in our stores. Let's create unforgettable playtime memories
+            together!
+          </p>
+        </div>
+        <div>
+          <img
+            src={`${publicUrl}/images/butik.png`}
+            alt="Shop"
+            width="600"
+            height="500"
+            style={{
+              position: "relative",
+              top: "-55px",
+              zIndex: 1,
+              marginLeft: "10px",
+            }}
+          />
+        </div>
+      </div>
       <LatestProducts />
 
       <img
