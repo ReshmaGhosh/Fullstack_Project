@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../redux/store";
 import { TextField, Button, Box } from "@mui/material";
 import axios from "axios";
-import { actions } from "./UserSlice";
 import { Link } from "react-router-dom";
+
+import { RootState } from "../../../redux/store";
+import { actions } from "./UserSlice";
+
 
 export default function UserInformation() {
   const dispatch = useDispatch();
@@ -25,7 +27,6 @@ export default function UserInformation() {
 
   const [readOnly, setReadOnly] = useState(true);
 
-  // handler functions for each field
   function setUserFirstName(event: React.ChangeEvent<HTMLInputElement>) {
     setFormData({ ...formData, firstName: event.target.value });
   }

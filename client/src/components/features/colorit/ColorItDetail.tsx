@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchColorById, ColorData } from "./ColorItSlice";
-import { RootState, useAppDispatch } from "../../../redux/store";
 import { Breadcrumbs, Button } from "@mui/material";
 import { Box, Grid, Typography } from "@mui/material";
+
+import { fetchColorById, ColorData } from "./ColorItSlice";
+import { RootState, useAppDispatch } from "../../../redux/store";
 import NavBar from "../../header/Navbar";
 import Footer from "../../footer/Footer";
 

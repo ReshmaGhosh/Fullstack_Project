@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPlayingById, PlayingData } from "./PlayingSlice";
-import { RootState, useAppDispatch } from "../../../redux/store";
-import { Breadcrumbs, Button } from "@mui/material";
+import { Breadcrumbs } from "@mui/material";
 import { Box, Grid, Typography } from "@mui/material";
+
+import { RootState, useAppDispatch } from "../../../redux/store";
+import { fetchPlayingById, PlayingData } from "./PlayingSlice";
 import Footer from "../../footer/Footer";
 import Navbar from "../../header/Navbar";
 

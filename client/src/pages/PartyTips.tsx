@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../redux/store";
-import { Box, Grid } from "@mui/material";
 import { fetchPartyTips } from "../components/features/partyTips/PartyTipsSlice";
 import PartyTipsCard from "../components/kulius/card/PartyTipsCard";
 import NavBar from "../components/header/Navbar";
 import Footer from "../components/footer/Footer";
+
+import { Box, Grid } from "@mui/material";
 
 function PartyTips() {
   const dispatch: AppDispatch = useDispatch();

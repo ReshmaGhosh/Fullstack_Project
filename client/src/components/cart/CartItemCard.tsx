@@ -24,10 +24,6 @@ import {
 } from "../features/cart/CartSlice";
 import { ProductOrder } from "../../types/type";
 
-// interface CartItem {
-//   _id: string;
-//   quantity: number;
-// }
 
 interface CartItemCardProps {
   item: ProductOrder;

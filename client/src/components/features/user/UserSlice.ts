@@ -1,11 +1,12 @@
 import { User } from "./../../../types/type";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+
 import { RootState } from "../../../redux/store";
 
-type InitialState = {
+interface InitialState {
   userInformation: User | null;
   isAuthenticated: boolean;
-};
+}
 
 const initialState: InitialState = {
   userInformation: null,

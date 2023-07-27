@@ -38,7 +38,7 @@ function Cart() {
   function onClickHandler() {
     if (!userDetail) {
       alert("Please login to continue");
-      
+
       navigate("/user");
       return;
     }
@@ -59,23 +59,18 @@ function Cart() {
         }
       )
       .then((res) => {
-        console.log("Response:", res);
-        console.log("Order id:", res.data._id);
         console.log(res, "new data");
-        if (res && res.status === 201) {
-          dispatch(clearCart());
-
-          console.log(`/order/${res.data._id}`);
-          navigate(`/order/${res.data._id}`);
-
+        if (res.status === 200) {
           alert("Thanks for shopping with us");
+
+          dispatch(clearCart());
+          navigate("/order-confirmation");
         }
       })
-      .catch((error) => {
-        if (error.response && error.response.status === 401) {
-          alert("Please log in to make an order");
-          navigate("/login");
 
+      .catch((error) => {
+        if (error.response.status === 401) {
+          alert("pls log in to make order");
           return;
         }
       });

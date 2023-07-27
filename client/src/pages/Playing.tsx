@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../redux/store";
 import PlayingCard from "../components/kulius/card/PlayingCard";
 import { fetchPlaying } from "../components/features/playing/PlayingSlice";
-import { Box, Grid } from "@mui/material";
 import NavBar from "../components/header/Navbar";
 import Footer from "../components/footer/Footer";
+
+import { Box, Grid } from "@mui/material";
 
 function Playing() {
   const dispatch: AppDispatch = useDispatch();

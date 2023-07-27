@@ -17,11 +17,13 @@ import ColorIt from "./pages/ColorIt";
 import PartyTips from "./pages/PartyTips";
 import Playing from "./pages/Playing";
 import OrderList from "./components/orders/OrderList";
-import OrderDetail from "./components/orders/OrderDetail";
+
 import ColorItDetail from "./components/features/colorit/ColorItDetail";
 import PartyTipsDetail from "./components/features/partyTips/PartyTipsDetail";
 import PlayingDetail from "./components/features/playing/PlayingDetail";
 import UserInformation from "./components/features/user/UserInformation";
+import OrderConfirmation from "./pages/OrderConfirmation";
+
 
 function App() {
 
@@ -41,12 +43,12 @@ function App() {
         <Route path="/colorit" element={<ColorIt />} />
         <Route path="/partytips" element={<PartyTips />} />
         <Route path="/playing" element={<Playing />} />
-        <Route path="/order/:id" element={<OrderDetail />} />
         <Route path="/colorit/:id" element={<ColorItDetail />} />
         <Route path="/partytips/:id" element={<PartyTipsDetail />} />
         <Route path="/playing/:id" element={<PlayingDetail />} />
         <Route path="/user-info" element={<UserInformation />} />
         <Route path="/order" element={<OrderList />} />
+        <Route path="/order-confirmation" element={<OrderConfirmation />} />
       </Routes>
     </div>
   );

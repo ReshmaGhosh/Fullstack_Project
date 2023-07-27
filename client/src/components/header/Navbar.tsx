@@ -11,7 +11,6 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
-
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchTerm } from "../features/product/ProductSlice";
 import { totalCartItem } from "../features/cart/CartSelector";

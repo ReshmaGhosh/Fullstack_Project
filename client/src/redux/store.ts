@@ -2,7 +2,6 @@ import { configureStore } from "@reduxjs/toolkit";
 import productReducer from "../components/features/product/ProductSlice";
 import WishListSlice from "../components/features/favourite/WishListSlice";
 import CartSlice from "../components/features/cart/CartSlice";
-
 import ColorItSlice from "../components/features/colorit/ColorItSlice";
 import PartyTipsSlice from "../components/features/partyTips/PartyTipsSlice";
 import PlayingSlice from "../components/features/playing/PlayingSlice";

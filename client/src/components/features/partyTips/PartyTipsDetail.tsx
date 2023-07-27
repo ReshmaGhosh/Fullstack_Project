@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPartyTipsById, PartyTipsData } from "./PartyTipsSlice";
-import { RootState, useAppDispatch } from "../../../redux/store";
-import { Breadcrumbs, Button } from "@mui/material";
+import { Breadcrumbs } from "@mui/material";
 import { Box, Grid, Typography } from "@mui/material";
+import { RootState, useAppDispatch } from "../../../redux/store";
+
+import { fetchPartyTipsById, PartyTipsData } from "./PartyTipsSlice";
 import Footer from "../../footer/Footer";
 import Navbar from "../../header/Navbar";
 
@@ -28,13 +29,12 @@ function PartyTipsDetail() {
       <Navbar />
       <Box mt={4}>
         {" "}
-       
         <Breadcrumbs aria-label="breadcrumb">
           <Link color="inherit" to="/">
             Home
           </Link>
           <Link color="inherit" to="/partytips">
-          Party Tips
+            Party Tips
           </Link>
           <Typography color="text.primary">Party Tips Detail</Typography>
         </Breadcrumbs>
@@ -49,7 +49,7 @@ function PartyTipsDetail() {
             />
           </Grid>
           <Grid item xs={12} md={6}>
-            <Box >
+            <Box>
               <Typography
                 variant="h3"
                 gutterBottom
