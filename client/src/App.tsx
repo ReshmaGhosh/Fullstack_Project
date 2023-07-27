@@ -21,6 +21,7 @@ import OrderDetail from "./components/orders/OrderDetail";
 import ColorItDetail from "./components/features/colorit/ColorItDetail";
 import PartyTipsDetail from "./components/features/partyTips/PartyTipsDetail";
 import PlayingDetail from "./components/features/playing/PlayingDetail";
+import UserInformation from "./components/features/user/UserInformation";
 
 function App() {
 
@@ -44,6 +45,8 @@ function App() {
         <Route path="/colorit/:id" element={<ColorItDetail />} />
         <Route path="/partytips/:id" element={<PartyTipsDetail />} />
         <Route path="/playing/:id" element={<PlayingDetail />} />
+        <Route path="/user-info" element={<UserInformation />} />
+        <Route path="/order" element={<OrderList />} />
       </Routes>
     </div>
   );

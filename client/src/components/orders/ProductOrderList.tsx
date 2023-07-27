@@ -5,6 +5,7 @@ type Prop = {
   product: ProductOrder;
 };
 export default function ProductOrderList({ product }: Prop) {
+    console.log(product); 
   return (
     <div>
       <p>{product.title}</p>

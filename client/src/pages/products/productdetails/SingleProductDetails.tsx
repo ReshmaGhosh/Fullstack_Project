@@ -103,9 +103,7 @@ console.log(id, "id");
                 Add to Cart
               </Button>
 
-              <Button variant="contained" color="secondary" className="ms-2">
-                Buy Now
-              </Button>
+             
             </Box>
           </Grid>
         </Grid>

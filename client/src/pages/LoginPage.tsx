@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, FormEvent } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import NavBar from "../components/header/Navbar";
@@ -68,6 +68,9 @@ function LoginPage() {
 
         <Link color="inherit" component={RouterLink} to="/login-detail">
           Login
+        </Link>
+        <Link color="inherit" component={RouterLink} to="/user-info">
+          User Update
         </Link>
       </Breadcrumbs>
       <StyledBox

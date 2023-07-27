@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
 
 import ProductOrderList from "./ProductOrderList";
-import { fetchOrderData } from "../../redux/thunk/order";
+import { fetchOrderDetail } from "../../redux/slice/order";
+
 
 export default function OrderList() {
 
@@ -15,7 +16,7 @@ export default function OrderList() {
 
   useEffect(() => {
     if (userDetail) {
-      dispatch(fetchOrderData(userDetail._id));
+      dispatch(fetchOrderDetail(userDetail._id));
     }
   }, [dispatch, userDetail]);
   console.log(orderList, "order");
@@ -38,7 +39,8 @@ export default function OrderList() {
           <div>{new Date(item.createdAt).toLocaleDateString()}</div>
           <div>
             {item.productList.map((product) => (
-              <ProductOrderList key={product._id} product={product} /> 
+                 <ProductOrderList key={product._id} product={product} />
+             
             ))}
           </div>
         </div>

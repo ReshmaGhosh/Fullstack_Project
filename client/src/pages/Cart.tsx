@@ -38,7 +38,8 @@ function Cart() {
   function onClickHandler() {
     if (!userDetail) {
       alert("Please login to continue");
-      navigate("/login-detail");
+      
+      navigate("/user");
       return;
     }
 
@@ -61,8 +62,7 @@ function Cart() {
         console.log("Response:", res);
         console.log("Order id:", res.data._id);
         console.log(res, "new data");
-        if (res && res.status === 200) {
-          
+        if (res && res.status === 201) {
           dispatch(clearCart());
 
           console.log(`/order/${res.data._id}`);
@@ -73,7 +73,6 @@ function Cart() {
       })
       .catch((error) => {
         if (error.response && error.response.status === 401) {
-         
           alert("Please log in to make an order");
           navigate("/login");
 

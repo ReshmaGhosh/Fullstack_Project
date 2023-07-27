@@ -7,7 +7,6 @@ export interface Product {
   image3: string;
   image4: string;
   description: string;
-
 }
 
 export type User = {
@@ -16,6 +15,10 @@ export type User = {
   firstName: string;
   lastName: string;
   address: string;
+  dob: string;
+  phone: string;
+  country: string;
+  state: string;
 };
 
 export type ProductOrder = Product & {
