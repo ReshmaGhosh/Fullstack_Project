@@ -10,6 +10,8 @@ import {
   addItemToWishlist,
   removeItemFromWishlist,
 } from "../components/features/favourite/WishListSlice";
+import { Box } from "@mui/material";
+import Footer from "../components/footer/Footer";
 
 function Toy() {
  
@@ -92,6 +94,9 @@ function Toy() {
       <NavBar />
 
       {content}
+      <Box mt={15}>
+        <Footer />
+      </Box>
     </div>
   );
 }

@@ -71,7 +71,9 @@ function WishList() {
         </Snackbar>
       </Box>
 
-      <Footer />
+      <Box mt={15}>
+        <Footer />
+      </Box>
     </div>
   );
 }

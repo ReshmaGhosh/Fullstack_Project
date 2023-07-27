@@ -14,6 +14,7 @@ import { styled } from "@mui/system";
 import ToysIcon from "@mui/icons-material/Toys";
 import axios from "axios";
 import { actions } from "../components/features/user/UserSlice";
+import Footer from "../components/footer/Footer";
 
 const StyledBox = styled(Box)({
   background: "linear-gradient(to right, #FFA500, #FFEC8B)",
@@ -116,9 +117,11 @@ function LoginPage() {
           Submit
         </Button>
       </StyledBox>
+      <Box mt={15}>
+        <Footer />
+      </Box>
     </div>
   );
 }
 
 export default LoginPage;
-

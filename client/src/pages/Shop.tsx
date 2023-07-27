@@ -1,6 +1,8 @@
 import React from "react";
 import NavBar from "../components/header/Navbar";
 import ShopMap from "../components/product/ShopMap";
+import { Box } from "@mui/material";
+import Footer from "../components/footer/Footer";
 
 function Shop() {
   const publicUrl = process.env.PUBLIC_URL;
@@ -84,7 +86,7 @@ function Shop() {
             color: "white",
             paddingTop: "130px",
             paddingLeft: "30px",
-            paddingRight: "30px"
+            paddingRight: "30px",
           }}
         >
           <h1 style={{ fontSize: "35px" }}>Find your nearest store here</h1>
@@ -128,6 +130,9 @@ function Shop() {
           ))}
         </div>
       </div>
+      <Box mt={15}>
+        <Footer />
+      </Box>
     </div>
   );
 }

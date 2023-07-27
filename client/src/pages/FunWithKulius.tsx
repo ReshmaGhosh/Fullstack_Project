@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import NavBar from "../components/header/Navbar";
 import { Link } from "react-router-dom";
-import { Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { Button } from "@mui/material";
 import { useLocation } from "react-router-dom";
-
 
 import ColorItCard from "../components/kulius/card/ColorItCard";
 import PlayingCard from "../components/kulius/card/PlayingCard";
@@ -17,18 +16,21 @@ import { ColorData } from "../components/features/colorit/ColorItSlice";
 import { PlayingData } from "../components/features/playing/PlayingSlice";
 import { PartyTipsData } from "../components/features/partyTips/PartyTipsSlice";
 import { RootState, useAppDispatch } from "../redux/store";
-
+import Footer from "../components/footer/Footer";
 
 function FunWithKulius() {
-
   const dispatch = useAppDispatch();
 
   const colorData = useSelector((state: RootState) => state.colorIt.color);
   const playingData = useSelector((state: RootState) => state.playing.playing);
-  const partyTipsData = useSelector((state: RootState) => state.partyTips.partyTips);
+  const partyTipsData = useSelector(
+    (state: RootState) => state.partyTips.partyTips
+  );
   const colorStatus = useSelector((state: RootState) => state.colorIt.status);
   const playingStatus = useSelector((state: RootState) => state.playing.status);
-  const partyTipsStatus = useSelector((state: RootState) => state.partyTips.status);
+  const partyTipsStatus = useSelector(
+    (state: RootState) => state.partyTips.status
+  );
 
   useEffect(() => {
     if (colorStatus === "idle") {
@@ -192,10 +194,11 @@ function FunWithKulius() {
           ))}
         </Grid>
       </div>
+      <Box mt={15}>
+        <Footer />
+      </Box>
     </div>
   );
 }
 
 export default FunWithKulius;
-
-

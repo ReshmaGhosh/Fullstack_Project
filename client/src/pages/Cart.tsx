@@ -130,7 +130,9 @@ function Cart() {
         </CardContent>
       </Container>
       <div style={{ marginTop: "200px" }}>
-        <Footer />
+        <Box mt={15}>
+          <Footer />
+        </Box>
       </div>
     </div>
   );
