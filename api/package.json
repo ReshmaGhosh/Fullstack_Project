@@ -21,6 +21,9 @@
   "scripts": {
     "start": "nodemon --watch \"src/*\" --ext \"ts,json\" --ignore \"src//.spec.ts\" --exec \"ts-node src/server.ts\""
   },
+  "engines": {
+    "node": ">=14.20.1"
+  },
   "devDependencies": {
     "@types/cors": "^2.8.13",
     "@types/dotenv": "^8.2.0",
