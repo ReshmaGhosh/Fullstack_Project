@@ -1,12 +1,32 @@
+
 import mongoose, { Document } from "mongoose";
 
 import { ProductDocument, ProductSchema } from "./Product";
 
+export type ProductOrder = ProductDocument & {
+  quantity: number;
+};
+
 export type OrderDocument = Document & {
   createdAt: Date;
-  productList: ProductDocument[];
+  productList: ProductOrder[];
   userId: string;
 };
+
+const ProductOrderSchema = new mongoose.Schema({
+  title: {
+    type: String,
+  },
+  price: {
+    type: Number,
+  },
+  image: {
+    type: String,
+  },
+  quantity: {
+    type: Number,
+  },
+});
 
 const OrderSchema = new mongoose.Schema({
   createdAt: {
@@ -15,11 +35,14 @@ const OrderSchema = new mongoose.Schema({
     default: Date.now,
   },
 
-  productList: [ProductSchema],
+  productList: [ProductOrderSchema],
 
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
+  },
+  total: {
+    type: Number,
   },
 });
 

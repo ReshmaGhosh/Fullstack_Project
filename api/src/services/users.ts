@@ -1,30 +1,36 @@
 import { NotFoundError } from "../helpers/apiError";
 import User, { UserDocument } from "../models/User";
 
-const createUserService = async (user: UserDocument): Promise<UserDocument> => {
-  return await user.save();
+ const createUserService = async (
+  user: UserDocument
+): Promise<UserDocument> => {
+   return await user.save();
 };
 
-const findUserByEmail = async (userEmail: string): Promise<UserDocument> => {
+ const findUserByEmail = async (
+  userEmail: string
+): Promise<UserDocument> => {
   const foundUser = await User.findOne({ email: userEmail });
   if (!foundUser) {
-    throw new NotFoundError(`User ${userEmail} not found`);
+    throw new NotFoundError(`User  ${userEmail} not found.`);
   }
   return foundUser;
 };
 
-const updateUser = async (
+ const updateUser = async (
   userId: string,
   update: Partial<UserDocument>
 ): Promise<UserDocument> => {
-  const foundUser = await User.findByIdAndUpdate(userId, update, {
-    new: true,
-  });
+  const foundUser = await User.findByIdAndUpdate(userId, update, { new: true });
 
   if (!foundUser) {
-    throw new NotFoundError(`User ${userId} not found`);
+    throw new NotFoundError(`could not find the user with the _id ${userId}`);
   }
   return foundUser;
 };
+export default {
+  createUserService,
+  findUserByEmail,
+  updateUser,
+};
 
-export default { createUserService, findUserByEmail, updateUser };

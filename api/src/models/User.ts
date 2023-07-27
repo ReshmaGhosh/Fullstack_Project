@@ -2,7 +2,16 @@ import mongoose, { Document } from "mongoose";
 
 export type UserDocument = Document & {
   email: string;
-  password: number;
+  password: string;
+  role: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+  dob: string;
+  phone: string;
+  country: string;
+  city: string;
+  state: string;
 };
 
 const UserSchema = new mongoose.Schema({
@@ -12,7 +21,40 @@ const UserSchema = new mongoose.Schema({
     unique: true,
   },
   password: {
-    type: Number,
+    type: String,
+    required: true,
+  },
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+    
+  },
+
+  address: {
+    type: String,
+    
+  },
+  role: {
+    type: String,
+    default: "user",
+  },
+  dob: {
+    type: String,
+  },
+  city: {
+    type: String,
+  },
+  state: {
+    type: String,
+  },
+  country: {
+    type: String,
+  },
+  phone: {
+    type: String,
   },
 });
 

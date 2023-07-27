@@ -1,22 +1,33 @@
-import { Request, Response, Router, NextFunction } from "express";
+
+import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import bcrypt from "bcrypt";
 
 import User from "../models/User";
 import UserServices from "../services/users";
+import { BadRequestError } from "../helpers/apiError";
 
 export const createUser = async (
-  req: Request,
-  res: Response,
+  request: Request,
+  response: Response,
   next: NextFunction
 ) => {
+  const { firstName, lastName, email, password } = request.body;
+
+  const salt = await bcrypt.genSalt(15);
+  const hashedPassword = await bcrypt.hash(password, salt);
+
+  const userInformation = new User({
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    password: hashedPassword,
+  });
+
   try {
-    const userInformation = new User({
-      email: req.body.email,
-      password: req.body.password,
-    });
-    const newUser = await UserServices.createUserService(userInformation);
-    res.status(200).json(newUser);
+    const userCreate = await UserServices.createUserService(userInformation);
+    response.status(201).json(userCreate);
   } catch (error) {
     next(error);
   }
@@ -26,39 +37,57 @@ dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
 export const logInWithPassword = async (
-  req: Request,
-  res: Response,
+  request: Request,
+  response: Response,
   next: NextFunction
 ) => {
   try {
-    const userData = await UserServices.findUserByEmail(req.body.email);
+    const userData = await UserServices.findUserByEmail(request.body.email);
     if (!userData) {
-      res.status(403).json({ message: "user do not have account" });
+      response
+        .status(403)
+        .json({ message: "User do not have account yet. Create one!" });
       return;
     }
-    const token = jwt.sign(
-        {
-       email: userData.email,
-       id: userData._id, 
-    },
-    JWT_SECRET,
-    {expiresIn: "1h"}
+
+    //Check for password
+    const isPasswordMatch = await bcrypt.compare(
+      request.body.password,
+      userData.password
     );
 
-    res.json({userData, token});
-
+    if (!isPasswordMatch) {
+      return response
+        .status(401)
+        .json({ message: "Invalid credentials. Password does not match." });
+    }
+    const token = jwt.sign(
+      {
+        email: userData.email,
+        _id: userData._id,
+        firstName: userData.firstName,
+      },
+      JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+    response.status(200).json({ userData, token });
   } catch (error) {
     next(error);
   }
 };
 
+// Update user inforamtion
 export const updateUserController = async (
-  req: Request,
-  res: Response,
+  request: Request,
+  response: Response,
   next: NextFunction
 ) => {
-  const update = req.body;
-  const userId = req.params.id;
-  const updatedUser = await UserServices.updateUser(userId, update);
-  res.json(updatedUser);
+  try {
+    const update = request.body;
+    const userId = request.params.id;
+    const updatedUser = await UserServices.updateUser(userId, update);
+    response.status(200).json(updatedUser);
+  } catch (error) {
+    next(error);
+  }
 };

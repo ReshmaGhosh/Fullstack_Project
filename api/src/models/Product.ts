@@ -10,7 +10,6 @@ export type ProductDocument = Document & {
   description: string;
 };
 
-
 export const ProductSchema = new mongoose.Schema({
   title: {
     type: String,

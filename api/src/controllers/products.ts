@@ -1,5 +1,4 @@
 
-// product controller here
 import { Request, Response, NextFunction } from "express";
 
 import Product from "../models/Product";

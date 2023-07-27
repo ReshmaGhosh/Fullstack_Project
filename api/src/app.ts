@@ -19,7 +19,6 @@ app.use(cors());
 app.use(passport.initialize());
 passport.use(jwtStrategy);
 
-// routes
 app.use("/products", productRouter);
 app.use("/users", userRouter);
 app.use("/orders", orderRouter);
@@ -27,7 +26,6 @@ app.use("/colorit", colorItRouter);
 app.use("/partytips", partyTipsRouter);
 app.use("/playing", playingRouter);
 
-// handler error here
 app.use(apiErrorHandler);
 
 export default app;

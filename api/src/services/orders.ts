@@ -1,7 +1,17 @@
-import { OrderDocument } from "./../models/Order";
+import Order, { OrderDocument } from "../models/Order";
+import { NotFoundError } from "../helpers/apiError";
 
 const createOrder = async (order: OrderDocument): Promise<OrderDocument> => {
-  return order.save();
+  return await order.save();
 };
 
-export default { createOrder };
+const getOrderByUserId = async (userId: string): Promise<OrderDocument[]> => {
+  const foundOrders = await Order.find({ userId: userId });
+
+  if (!foundOrders) {
+    throw new NotFoundError(`order with user id ${userId} not found`);
+  }
+  return foundOrders;
+};
+
+export default { createOrder, getOrderByUserId };
