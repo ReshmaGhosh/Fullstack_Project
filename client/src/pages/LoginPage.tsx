@@ -42,7 +42,7 @@ function LoginPage() {
   function onClickHandler(event: FormEvent) {
     event.preventDefault();
 
-    const url = "http://localhost:8000/users/login";
+    const url = "https://frontend-1w4w.onrender.com/users/login";
 
     axios
       .post(url, userInfo)

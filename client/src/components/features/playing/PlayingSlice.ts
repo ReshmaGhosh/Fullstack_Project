@@ -24,7 +24,9 @@ const initialState: PlayingState = {
 export const fetchPlaying = createAsyncThunk(
   "playing/fetchPlaying",
   async () => {
-    const response = await axios.get("http://localhost:8000/playing");
+    const response = await axios.get(
+      "https://frontend-1w4w.onrender.com/playing"
+    );
     return response.data;
   }
 );
@@ -32,7 +34,9 @@ export const fetchPlaying = createAsyncThunk(
 export const fetchPlayingById = createAsyncThunk(
   "playing/fetchPlayingById",
   async (id: string) => {
-    const response = await axios.get(`http://localhost:8000/playing/${id}`);
+    const response = await axios.get(
+      `https://frontend-1w4w.onrender.com/playing/${id}`
+    );
     return response.data;
   }
 );

@@ -64,7 +64,7 @@ function LogInDetail() {
   const navigate = useNavigate();
 
   function onClickHandler() {
-    const url = "http://localhost:8000/users/register";
+    const url = "https://frontend-1w4w.onrender.com/users/register";
 
     axios
       .post(url, userInfo)

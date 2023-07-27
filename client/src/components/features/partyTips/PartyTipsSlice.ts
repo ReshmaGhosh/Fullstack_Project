@@ -21,15 +21,22 @@ const initialState: PartyTipsState = {
   error: null,
 };
 
-export const fetchPartyTips = createAsyncThunk("partyTips/fetchPartyTips", async () => {
-  const response = await axios.get("http://localhost:8000/partytips");
-  return response.data;
-});
+export const fetchPartyTips = createAsyncThunk(
+  "partyTips/fetchPartyTips",
+  async () => {
+    const response = await axios.get(
+      "https://frontend-1w4w.onrender.com/partytips"
+    );
+    return response.data;
+  }
+);
 
 export const fetchPartyTipsById = createAsyncThunk(
   "partyTips/fetchPartyTipsById",
   async (id: string) => {
-    const response = await axios.get(`http://localhost:8000/partytips/${id}`);
+    const response = await axios.get(
+      `https://frontend-1w4w.onrender.com/partytips/${id}`
+    );
     return response.data;
   }
 );

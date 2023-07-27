@@ -1,10 +1,8 @@
-
 import { createAsyncThunk, PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../../redux/store";
 import axios from "axios";
 
 import { Product, ProductOrder } from "../../../types/type";
-
 
 interface CartState {
   carts: ProductOrder[];
@@ -23,7 +21,9 @@ const initialState: CartState = {
 export const fetchProduct = createAsyncThunk(
   "cart/fetchProduct",
   async (_id: string) => {
-    const response = await axios.get(`http://localhost:8000/products/${_id}`);
+    const response = await axios.get(
+      `https://frontend-1w4w.onrender.com/products/${_id}`
+    );
     return response.data;
   }
 );

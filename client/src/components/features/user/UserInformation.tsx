@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import { RootState } from "../../../redux/store";
 import { actions } from "./UserSlice";
 
-
 export default function UserInformation() {
   const dispatch = useDispatch();
 
@@ -61,7 +60,7 @@ export default function UserInformation() {
 
   function onSubmitHandler() {
     const token = localStorage.getItem("userToken");
-    const url = `http://localhost:8000/users/${userDetail?._id}`;
+    const url = `https://frontend-1w4w.onrender.com/users/${userDetail?._id}`;
 
     axios
       .put(url, formData, {
