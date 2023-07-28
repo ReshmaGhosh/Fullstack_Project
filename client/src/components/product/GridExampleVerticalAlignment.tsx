@@ -107,15 +107,15 @@ const GridExampleVerticalAlignment = () => {
   const [playingData, setPlayingData] = useState<CardData[]>([]);
 
   useEffect(() => {
-    fetch("https://frontend-1w4w.onrender.com/colorit")
+    fetch("https://backend-ege3.onrender.com/colorit")
       .then((response) => response.json())
       .then((data) => setColorItData(data.slice(0, 2)));
 
-    fetch("https://frontend-1w4w.onrender.com/partytips")
+    fetch("https://backend-ege3.onrender.com/partytips")
       .then((response) => response.json())
       .then((data) => setPartyTipsData(data.slice(0, 1)));
 
-    fetch("https://frontend-1w4w.onrender.com/playing")
+    fetch("https://backend-ege3.onrender.com/playing")
       .then((response) => response.json())
       .then((data) => setPlayingData(data.slice(0, 2)));
   }, []);

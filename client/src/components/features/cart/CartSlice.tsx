@@ -22,7 +22,7 @@ export const fetchProduct = createAsyncThunk(
   "cart/fetchProduct",
   async (_id: string) => {
     const response = await axios.get(
-      `https://frontend-1w4w.onrender.com/products/${_id}`
+      `https://backend-ege3.onrender.com/products/${_id}`
     );
     return response.data;
   }

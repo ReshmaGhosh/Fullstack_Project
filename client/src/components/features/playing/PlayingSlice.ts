@@ -25,7 +25,7 @@ export const fetchPlaying = createAsyncThunk(
   "playing/fetchPlaying",
   async () => {
     const response = await axios.get(
-      "https://frontend-1w4w.onrender.com/playing"
+      "https://backend-ege3.onrender.com/playing"
     );
     return response.data;
   }
@@ -35,7 +35,7 @@ export const fetchPlayingById = createAsyncThunk(
   "playing/fetchPlayingById",
   async (id: string) => {
     const response = await axios.get(
-      `https://frontend-1w4w.onrender.com/playing/${id}`
+      `https://backend-ege3.onrender.com/playing/${id}`
     );
     return response.data;
   }

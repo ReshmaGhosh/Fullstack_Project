@@ -21,9 +21,7 @@ const initialState: ColorItState = {
 };
 
 export const fetchColor = createAsyncThunk("colorIt/fetchColor", async () => {
-  const response = await axios.get(
-    "https://frontend-1w4w.onrender.com/colorit"
-  );
+  const response = await axios.get("https://backend-ege3.onrender.com/colorit");
   return response.data;
 });
 
@@ -31,7 +29,7 @@ export const fetchColorById = createAsyncThunk(
   "colorIt/fetchColorById",
   async (id: string) => {
     const response = await axios.get(
-      `https://frontend-1w4w.onrender.com/colorit/${id}`
+      `https://backend-ege3.onrender.com/colorit/${id}`
     );
     return response.data;
   }

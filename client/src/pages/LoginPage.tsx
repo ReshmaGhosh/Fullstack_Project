@@ -42,7 +42,7 @@ function LoginPage() {
   function onClickHandler(event: FormEvent) {
     event.preventDefault();
 
-    const url = "https://frontend-1w4w.onrender.com/users/login";
+    const url = "https://backend-ege3.onrender.com/users/login";
 
     axios
       .post(url, userInfo)

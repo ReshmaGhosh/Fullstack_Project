@@ -45,7 +45,7 @@ function Cart() {
 
     // send data to backend
     const token = localStorage.getItem("userToken");
-    const url = `https://frontend-1w4w.onrender.com/orders/${userDetail?._id}`;
+    const url = `https://backend-ege3.onrender.com/orders/${userDetail?._id}`;
 
     axios
       .post(

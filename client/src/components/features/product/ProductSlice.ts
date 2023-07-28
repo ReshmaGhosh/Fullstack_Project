@@ -13,7 +13,7 @@ export const fetchProducts = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get<Product[]>(
-        "https://frontend-1w4w.onrender.com/products"
+        "https://backend-ege3.onrender.com/products"
       );
       return response.data;
     } catch (err) {
@@ -27,7 +27,7 @@ export const fetchProductById = createAsyncThunk(
   async (id: string) => {
     try {
       const response = await axios.get<Product>(
-        `https://frontend-1w4w.onrender.com/products/${id}`
+        `https://backend-ege3.onrender.com/products/${id}`
       );
       return response.data;
     } catch (err) {

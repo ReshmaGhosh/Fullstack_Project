@@ -60,7 +60,7 @@ export default function UserInformation() {
 
   function onSubmitHandler() {
     const token = localStorage.getItem("userToken");
-    const url = `https://frontend-1w4w.onrender.com/users/${userDetail?._id}`;
+    const url = `https://backend-ege3.onrender.com/users/${userDetail?._id}`;
 
     axios
       .put(url, formData, {
