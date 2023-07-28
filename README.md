@@ -1,3 +1,7 @@
+
+Frontend URL : https://frontend-1w4w.onrender.com
+Backend URL : https://backend-ege3.onrender.com
+
 # Fullstack Project
 
 ## How to run project
