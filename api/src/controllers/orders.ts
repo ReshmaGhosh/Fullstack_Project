@@ -1,25 +1,3 @@
-// import { Request, Response, NextFunction } from "express";
-
-// import orderServices from "../services/orders";
-// import Order from "../models/Order";
-
-// export const createOrderController = async (
-//   req: Request,
-//   res: Response,
-//   next: NextFunction
-// ) => {
-//   try {
-//     const newOrder = new Order({
-//       userId: req.params.id,
-
-//       productList: req.body.productList,
-//     });
-//     const order = await orderServices.createOrder(newOrder);
-//     res.json(order);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
 import { Request, Response, NextFunction } from "express";
 
 import orderServices from "../services/orders";
@@ -55,4 +33,3 @@ export const getOrderListByUserId = async (
     next(error);
   }
 };
-
