@@ -69,7 +69,7 @@ function LogInDetail() {
     axios
       .post(url, userInfo)
       .then((response) => {
-        if (response.status === 200) {
+        if (response.status === 201) {
           // navigate("/login");
           navigate("/user");
         }
