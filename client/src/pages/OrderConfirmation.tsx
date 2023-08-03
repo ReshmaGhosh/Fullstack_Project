@@ -3,19 +3,20 @@ import { Typography, Container, Box } from "@material-ui/core";
 
 function OrderConfirmation() {
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="md" style={{ marginTop: "100px" }}>
       <Box
-        my={4}
+        my={8}
+        mx="auto"
         style={{
-          backgroundColor: "#f3f3f3",
-          padding: "20px",
+          backgroundColor: "lightpink",
+          padding: "40px",
           borderRadius: "8px",
         }}
       >
-        <Typography variant="h4" component="h1" gutterBottom>
+        <Typography variant="h3" component="h1" gutterBottom>
           Order Confirmation
         </Typography>
-        <Typography variant="body1" gutterBottom>
+        <Typography variant="h5" gutterBottom>
           Thank you for your order! Your order has been created and you will
           receive an email confirmation shortly. We appreciate your business.
         </Typography>

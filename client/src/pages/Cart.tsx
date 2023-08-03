@@ -60,7 +60,7 @@ function Cart() {
       )
       .then((res) => {
         console.log(res, "new data");
-        if (res.status === 200) {
+        if (res.status === 201) {
           alert("Thanks for shopping with us");
 
           dispatch(clearCart());
@@ -105,14 +105,14 @@ function Cart() {
         <CardContent>
           <Grid container justifyContent="space-between" alignItems="center">
             <Grid item xs={6} sm={3}>
-              <Typography variant="h6">Subtotal: ${subTotal}</Typography>
+              <Typography variant="h6">Subtotal: SEK {subTotal}</Typography>
             </Grid>
             <Grid item xs={6} sm={3}>
-              <Typography variant="h6">Tax(2%): ${tax}</Typography>
+              <Typography variant="h6">Tax(2%): SEK {tax}</Typography>
             </Grid>
             <Grid item xs={6} sm={3}>
               <Typography variant="h6">
-                Total Price: ${totalAmmount.toFixed(2)}
+                Total Price: SEK {totalAmmount.toFixed(2)}
               </Typography>
             </Grid>
             <Grid item xs={6} sm={3}>
