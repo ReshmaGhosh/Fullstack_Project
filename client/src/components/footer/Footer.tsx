@@ -1,8 +1,6 @@
-
 import React from "react";
-import { Grid, Link, Typography } from "@mui/material";
-import { Link as MuiLink } from "@mui/material";
-
+import { Grid, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -41,7 +39,7 @@ function Footer() {
           >
             <Typography variant="h6">
               <Link
-                href="/toy"
+                to="/toy"
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 Toy
@@ -49,7 +47,7 @@ function Footer() {
             </Typography>
             <Typography variant="h6">
               <Link
-                href="/shop"
+                to="/shop"
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 Shop
@@ -57,7 +55,7 @@ function Footer() {
             </Typography>
             <Typography variant="h6">
               <Link
-                href="/funwithkulius"
+                to="/funwithkulius"
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 Fun with Kulius
@@ -65,7 +63,7 @@ function Footer() {
             </Typography>
             <Typography variant="h6">
               <Link
-                href="/about"
+                to="/about"
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 About
@@ -82,7 +80,12 @@ function Footer() {
             Lund Central 223 52 ,Lund Questions about the range?
           </Typography>
           <Typography variant="body2" align="left" paddingLeft={2}>
-            <MuiLink href="/shop">Contact your Fauget store</MuiLink>
+            <Link
+              to="/shop"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              Contact your Fauget store
+            </Link>
           </Typography>
         </Grid>
       </Grid>
