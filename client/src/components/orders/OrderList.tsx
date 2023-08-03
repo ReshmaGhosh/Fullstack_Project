@@ -1,9 +1,8 @@
-
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
 import ProductOrderList from "./ProductOrderList";
-import { fetchOrderData } from "../../redux/thunk/order";
+import { fetchOrderData } from "./OrderSlice";
 
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
