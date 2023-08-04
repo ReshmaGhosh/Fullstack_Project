@@ -57,7 +57,7 @@ function HomePage() {
           <img
             src={`${publicUrl}/images/butik.png`}
             alt="Shop"
-            width="600"
+            width="615"
             height="500"
             style={{
               position: "relative",

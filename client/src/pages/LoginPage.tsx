@@ -9,6 +9,7 @@ import {
   Typography,
   Breadcrumbs,
   Link,
+  Alert,
 } from "@mui/material";
 import { styled } from "@mui/system";
 import ToysIcon from "@mui/icons-material/Toys";
@@ -27,6 +28,8 @@ function LoginPage() {
     email: "",
     password: "",
   });
+
+  const [errorMessage, setErrorMessage] = useState("");
 
   function getUserEmail(event: React.ChangeEvent<HTMLInputElement>) {
     setUserInfo({ ...userInfo, email: event.target.value });
@@ -56,7 +59,12 @@ function LoginPage() {
         }
         console.log(response.data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        if (error.response.status === 404) {
+          setErrorMessage("Log in first if you are new user");
+        }
+        console.log(error);
+      });
     // navigate("/login-detail");
   }
   return (
@@ -96,6 +104,8 @@ function LoginPage() {
           <ToysIcon fontSize="large" />
           &nbsp; ToyStore Sign In
         </Typography>
+        {errorMessage && <Alert severity="error">{errorMessage}</Alert>}
+
         <TextField
           required
           label="Username"
